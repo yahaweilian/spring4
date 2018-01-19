@@ -11,19 +11,19 @@ public class Spitter {
 	private Long id;
 	
     @NotNull
-    @Size(min=5,max=16)
+    @Size(min=5,max=16,message="{username.size }")
 	private String username;
 	
     @NotNull
-    @Size(min=5,max=25)
+    @Size(min=5,max=25,message="{password.size }")
 	private String password;
 	
     @NotNull
-    @Size(min=2,max=30)
+    @Size(min=2,max=30,message="{firstName.size }")
 	private String firstName;
 	
     @NotNull
-    @Size(min=2,max=30)
+    @Size(min=2,max=30,message="{lastName.size }")
 	private String lastName;
 	
     public Spitter(){}
@@ -36,7 +36,7 @@ public class Spitter {
 		this.lastName = lastName;
 	}
 
-	public Spitter(String firstName, String lastName,String username, String password) {
+	public Spitter(String username, String password,String firstName, String lastName) {
 		this(1L, username, password, firstName, lastName);
 	}
 

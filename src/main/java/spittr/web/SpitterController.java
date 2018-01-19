@@ -28,7 +28,8 @@ public class SpitterController {
 	}
 
 	@RequestMapping(value="register",method=RequestMethod.GET)
-	public String showRegistrationForm(){
+	public String showRegistrationForm(Model model){
+		model.addAttribute(new Spitter());//对应jsp表单 属性commandName 需要的key为“spitter”的模型对象
 		return "registerForm";
 	}
 	
@@ -42,7 +43,7 @@ public class SpitterController {
 		return "redirect:/spitter/" + spitter.getUsername();
 	}
 	
-	@RequestMapping(value="/{username}")
+	@RequestMapping(value="/{username}",method=RequestMethod.GET)
 	public String showSpitterProfile(
 			@PathVariable String username, Model model){
 		Spitter spitter = spitterRepository.findByUsername(username);

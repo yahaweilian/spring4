@@ -12,6 +12,7 @@ import org.junit.Test;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.model;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.redirectedUrl;
 
 
@@ -49,5 +50,21 @@ public class SpitterControllerTest {
 		   .andExpect(redirectedUrl("/spitter/jbauer"));
 		
 		verify(mockRepository,atLeastOnce()).save(unsaved);
+	}
+	
+	@Test
+	public void testShowSpitterProfile() throws Exception{
+		SpitterRepository mockRepository = mock(SpitterRepository.class);
+		Spitter spitter = new Spitter("jbauer","24hours","Jack","Bauer");
+		when(mockRepository.findByUsername("jbauer")).thenReturn(spitter);
+		
+		SpitterController controller = new SpitterController(mockRepository);
+		MockMvc mockMvc = standaloneSetup(controller).build();
+		
+		mockMvc.perform(get("/spitter/jbauer"))
+		    .andExpect(view().name("profile"))
+		    .andExpect(model().attributeExists("spitter"))
+		    .andExpect(model().attribute("spitter", spitter));
+		
 	}
 }

@@ -17,6 +17,11 @@ body {
 	font-size: 12px;
 }
 
+div.errors{
+	background: #ffcccc;
+	border: 2px solid red;
+}
+
 #innerTable {
 	margin-left: auto;
 	margin-right: auto;
