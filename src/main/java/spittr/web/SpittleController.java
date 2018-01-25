@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import spittr.Spittle;
 import spittr.data.SpittleRepository;
+import spittr.exception.DuplicateSpittleException;
+import spittr.exception.SpittleNotFoundException;
 
 @Controller
 @RequestMapping("/spittles")
@@ -41,8 +43,19 @@ public class SpittleController {
 	@RequestMapping(value="/{spittleId}",method=RequestMethod.GET)
 	public String showSpittle(
 			@PathVariable("spittleId") long spittleId,
-			Model model){
-		model.addAttribute(spittleRepository.findOne(spittleId));
+			Model model) throws SpittleNotFoundException{
+		Spittle spittle = spittleRepository.findOne(spittleId);
+		if(spittle == null){
+			throw new SpittleNotFoundException();
+		}
+		model.addAttribute(spittle);
 		return "spittle";
+	}
+	
+	public String savaSpittle(Spittle spittle,Model model) throws DuplicateSpittleException{
+		spittleRepository.save(spittle);
+		model.addAttribute("max", 100000);
+		model.addAttribute("count", 20);
+		return "redirect:/spittles";
 	}
 }

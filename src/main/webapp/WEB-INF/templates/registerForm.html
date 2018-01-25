@@ -7,7 +7,7 @@
    </head>
    <body>
       <h1>Register</h1>
-      <form action="" method="post" th:object="${spitter}">
+      <form action="/spitter/register" method="post" th:object="${spitter}" enctype="multipart/form-data">
          <div class="errors" th:if="${#fields.hasErrors('*')">
             <ul>
               <li th:each="err : ${#fields.hasErrors('*')"
@@ -21,6 +21,8 @@
          Username: <input type="text" name="username" /><br/>
          Password: <input type="password" name="password" /><br/>
          
+         <label>Profile Picture</label>:
+             <input type="file" name="profilePicture" accept="image/jpeg,image/png,image/gif" /><br/>
          <input type="submit" value="Register">
       </form>
    </body>

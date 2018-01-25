@@ -3,58 +3,52 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
         http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
-
-	<!-- <display-name>spring4</display-name>
-    <welcome-file-list>
-        <welcome-file>index.jsp</welcome-file>
-    </welcome-file-list> -->
-	
-	 <!-- 为上下文设置默认的profile -->
-   <!--  <context-param>
+    
+    <!-- 使用java配置 -->
+    <context-param>
+        <param-name>contextClass</param-name>
+        <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
+    </context-param>
+    <!-- 指定根配置类 -->
+    <context-param>
+	    <param-name>contextConfigLocation</param-name>
+	    <param-value>spittr.config.RootConfig</param-value>
+	</context-param> 
+	<!-- 为上下文设置默认的profile -->
+    <context-param>
        <param-name>spring.profiles.default</param-name>
        <param-value>dev</param-value>
-    </context-param> -->
-    
-	<!-- Spring MVC -->
-	<!-- 默认情况下DispatcherServlet会尝试从appServlet-servlet.xml文件加载应用上下文 -->
-	<!-- <servlet>
-	    <servlet-name>appServlet</servlet-name>
-	    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-	    <init-param>
-	        应用上下文
-	        <param-name>contextConfigLocation</param-name>
-	    	<param-value>/WEB-INF/spring-servlet.xml</param-value>
-	    </init-param>
-	    <init-param>
-	    	为Servlet设置默认的profile
-	    	<param-name>spring.profiles.default</param-name>
-	    	<param-value>dev</param-value>
-	   	</init-param>
-	    <load-on-startup>1</load-on-startup>
-	</servlet> -->
-	
-	<!-- <servlet-mapping>
-	    <servlet-name>appServlet</servlet-name>
-	    <url-pattern>/</url-pattern>
-	</servlet-mapping> -->
-	
-	<!-- 加载其他配置文件到Spring应用上下文中 -->
-	<!-- <listener>
+    </context-param>
+	<listener>
 	   <listener-class>
 	      org.springframework.web.context.ContextLoaderListener
 	   </listener-class>
 	</listener>
-	<context-param>
-	    <param-name>contextConfigLocation</param-name>
-	    <param-value>/WEB-INF/spring/root-context.xml</param-value>
-	</context-param> -->
+    
+	<!-- Spring MVC -->
+	<servlet>
+	    <servlet-name>appServlet</servlet-name>
+	    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+	    <!-- 使用java配置 -->
+	    <init-param>
+	        <param-name>contextClass</param-name>
+	        <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
+	    </init-param>
+	    <!-- 指定DispatcherServlet配置类 -->
+	    <init-param>
+	        <param-name>contextConfigLocation</param-name>
+	    	<param-value>spittr.config.WebConfig</param-value>
+	    </init-param>
+	    <!--为Servlet设置默认的profile -->
+	    <init-param>
+	    	<param-name>spring.profiles.default</param-name>
+	    	<param-value>dev</param-value>
+	   	</init-param>
+	    <load-on-startup>1</load-on-startup>
+	</servlet> 
+	<servlet-mapping>
+	    <servlet-name>appServlet</servlet-name>
+	    <url-pattern>/</url-pattern>
+	</servlet-mapping>
 	
-   
-    
-    
-    
-    
-    
-    
-    
 </web-app>

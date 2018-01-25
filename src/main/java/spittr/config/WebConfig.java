@@ -1,10 +1,14 @@
 package spittr.config;
 
+import java.io.IOException;
+
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -12,10 +16,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.tiles2.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles2.TilesViewResolver;
-import org.thymeleaf.TemplateEngine;
-import org.thymeleaf.spring4.SpringTemplateEngine;
-import org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver;
-import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 
 /**
  * @author Administrator
@@ -49,6 +49,7 @@ public class WebConfig extends WebMvcConfigurerAdapter{
 		return resolver;
 	}
 	
+	/*----------------------Tiles--------------------------------------------*/
 	@Bean
 	public TilesConfigurer tilesConfigurer(){//tile页面布局设置
 		TilesConfigurer tiles = new TilesConfigurer();
@@ -62,9 +63,9 @@ public class WebConfig extends WebMvcConfigurerAdapter{
 	public ViewResolver tilesViewResolver(){//将逻辑视图名解析为Tile定义
 		return new TilesViewResolver();
 	}
-	
+	/*------------------------------------------------------------------------------*/
 	/*-------------------------------thymeleaf---------------------------------------*/
-	@Bean
+/*	@Bean
 	public ViewResolver thymeleafViewResolver(SpringTemplateEngine templateEngine){//thymeleaf视图解析器
 		ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
 		viewResolver.setTemplateEngine(templateEngine);
@@ -84,13 +85,30 @@ public class WebConfig extends WebMvcConfigurerAdapter{
 		templateResolver.setSuffix(".html");
 		templateResolver.setTemplateMode("HTML5");
 		return templateResolver;
-	}
+	}*/
 	/*-----------------------------------------------------------------------------*/
+	/*------------------------------上传图片的配置-------------------------------------*/
+	@Bean
+	public MultipartResolver multipartResolver() throws IOException{//配置multipart解析器
+		return new StandardServletMultipartResolver();
+	}
+	/**
+	 * 如果我们需要将应用部署到非Servlet 3.0的容器中， 那么就得需要替代的方案
+	 */
+//	@Bean
+//	public MultipartResolver multipartResolver() throws IOException{
+//		CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
+//		multipartResolver.setUploadTempDir("/tmp/spittr/uploads");
+//	}
 	
+	/*值得一提的是， 如果在编写控制器方法的时候， 通过Part参数的形式接受文件上传， 那么就没有必要配置MultipartResolver了。 只有使
+	用MultipartFile的时候， 我们才需要MultipartResolver。*/
+	/*--------------------------------------------------------------------------------*/
 	
 	@Override
 	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
 		//配置静态资源的处理
 		configurer.enable();
 	}
+	
 }
