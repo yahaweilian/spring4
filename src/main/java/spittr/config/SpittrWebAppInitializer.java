@@ -52,8 +52,8 @@ public class SpittrWebAppInitializer extends AbstractAnnotationConfigDispatcherS
 	 * 在这里没有必要声明它的映射路径， getServletFilters()方法返回的所有Filter都会映射到DispatcherServlet上。
 	 * 当然你也可以使用自定义Servlet的方式来自定义Filter
 	 */
-	@Override
-	protected Filter[] getServletFilters(){
+	/*@Override
+	protected Filter[] getServletFilters(){ //使用此filter之后，请求无效，页面无反映。初步判断DispatcherServlet 拦截请求 是使用或经过filter
 		return new Filter[] {new MyFilter()};
-	}
+	}*/
 }

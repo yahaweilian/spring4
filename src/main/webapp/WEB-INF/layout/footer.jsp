@@ -1,1 +1,1 @@
-Copyright &copy; ynd
+Copyright &copy; ynding

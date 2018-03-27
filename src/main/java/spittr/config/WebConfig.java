@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.core.annotation.Order;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
@@ -14,8 +16,13 @@ import org.springframework.web.servlet.config.annotation.DefaultServletHandlerCo
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
-import org.springframework.web.servlet.view.tiles2.TilesConfigurer;
-import org.springframework.web.servlet.view.tiles2.TilesViewResolver;
+import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
+import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
+import org.thymeleaf.spring4.SpringTemplateEngine;
+import org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver;
+import org.thymeleaf.spring4.view.ThymeleafViewResolver;
+
+import spittr.web.HomeController;
 
 /**
  * @author Administrator
@@ -23,7 +30,9 @@ import org.springframework.web.servlet.view.tiles2.TilesViewResolver;
  */
 @Configuration
 @EnableWebMvc//启用Spring MVC
-@ComponentScan("spittr.web")
+@ComponentScan(basePackageClasses = HomeController.class,
+includeFilters = @ComponentScan.Filter(Controller.class),
+useDefaultFilters = false)
 public class WebConfig extends WebMvcConfigurerAdapter{
 
 	@Bean
@@ -39,10 +48,12 @@ public class WebConfig extends WebMvcConfigurerAdapter{
 	}
 	
 	@Bean
+	@Order(2)
 	public ViewResolver viewResolver(){//配置 jsp视图解析器
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
 		resolver.setPrefix("/WEB-INF/views/");
 		resolver.setSuffix(".jsp");
+		resolver.setOrder(2);
 		resolver.setExposeContextBeansAsAttributes(true);
 		resolver.setViewClass(
 				org.springframework.web.servlet.view.JstlView.class);//将视图解析为JstlView
@@ -60,19 +71,24 @@ public class WebConfig extends WebMvcConfigurerAdapter{
 		return tiles;
 	}
 	@Bean
+	@Order(1)
 	public ViewResolver tilesViewResolver(){//将逻辑视图名解析为Tile定义
-		return new TilesViewResolver();
+		TilesViewResolver viewResolver = new TilesViewResolver();//这里要引用tiles3的包，而非tiles2的包，否则会报错：java.lang.ClassNotFoundException: org.apache.tiles.TilesApplicationContext
+		viewResolver.setOrder(1);
+		return viewResolver;
 	}
 	/*------------------------------------------------------------------------------*/
 	/*-------------------------------thymeleaf---------------------------------------*/
-/*	@Bean
+	@Bean
+	@Order(3)
 	public ViewResolver thymeleafViewResolver(SpringTemplateEngine templateEngine){//thymeleaf视图解析器
 		ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
 		viewResolver.setTemplateEngine(templateEngine);
+		viewResolver.setOrder(3);
 		return viewResolver;
 	}
 	@Bean
-	public TemplateEngine templateEngine(){//模板引擎
+	public SpringTemplateEngine templateEngine(){//模板引擎
 		SpringTemplateEngine templateEngine = new SpringTemplateEngine();
 		templateEngine.setTemplateResolver(templateResolver());
 		templateEngine.setEnableSpringELCompiler(true);
@@ -80,12 +96,12 @@ public class WebConfig extends WebMvcConfigurerAdapter{
 	}
 	@Bean
 	public SpringResourceTemplateResolver templateResolver(){//模板解析器
-		SpringResourceTemplateResolver  templateResolver = new SpringResourceTemplateResolver ();
+		SpringResourceTemplateResolver  templateResolver = new SpringResourceTemplateResolver();
 		templateResolver.setPrefix("/WEB-INF/templates/");
 		templateResolver.setSuffix(".html");
 		templateResolver.setTemplateMode("HTML5");
 		return templateResolver;
-	}*/
+	}
 	/*-----------------------------------------------------------------------------*/
 	/*------------------------------上传图片的配置-------------------------------------*/
 	@Bean
