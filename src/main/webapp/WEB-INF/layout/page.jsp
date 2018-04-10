@@ -11,11 +11,11 @@
         <t:insertAttribute name="header" />
      </div>
      
-     <div id="content">
+     <div id="content" align="center">
         <t:insertAttribute name="body" />
      </div>
      
-     <div id="footer">
+     <div id="footer" align="right" >
         <t:insertAttribute name="footer" />
      </div>
    </body>

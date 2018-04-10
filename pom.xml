@@ -29,6 +29,12 @@
 			<artifactId>javax.inject</artifactId>
 			<version>1</version>
 		</dependency>
+		<!-- fileupload -->
+		<dependency>
+           <groupId>commons-fileupload</groupId>
+           <artifactId>commons-fileupload</artifactId>
+           <version>1.3.1</version>
+        </dependency>
 		<!-- validation -->
 		<dependency>
 			<groupId>javax.validation</groupId>
@@ -41,6 +47,12 @@
 			<artifactId>commons-lang3</artifactId>
 			<version>3.1</version>
 		</dependency>
+        <!-- Dbcp -->
+        <dependency>
+           <groupId>commons-dbcp</groupId>
+           <artifactId>commons-dbcp</artifactId>
+           <version>1.4</version>
+        </dependency>
 
 		<!-- Tiles3 -->
 		<dependency>

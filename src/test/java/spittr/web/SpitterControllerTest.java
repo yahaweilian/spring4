@@ -18,8 +18,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import org.springframework.test.web.servlet.MockMvc;
 
-import spittr.Spitter;
 import spittr.data.SpitterRepository;
+import spittr.entity.Spitter;
 
 public class SpitterControllerTest {
 

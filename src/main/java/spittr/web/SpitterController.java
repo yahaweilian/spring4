@@ -3,6 +3,7 @@ package spittr.web;
 import java.io.File;
 import java.io.IOException;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +27,8 @@ import com.amazonaws.services.s3.model.GroupGrantee;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.Permission;
 
-import spittr.Spitter;
 import spittr.data.SpitterRepository;
+import spittr.entity.Spitter;
 import spittr.exception.ImageUploadException;
 
 @Controller
@@ -55,14 +56,24 @@ public class SpitterController {
 			@RequestPart("profilePicture") MultipartFile profilePicture,
 			@Valid Spitter spitter,
 			Errors errors,
-			RedirectAttributes model) throws ImageUploadException  {
+			RedirectAttributes model,
+			HttpSession session) throws ImageUploadException  {
 		if(errors.hasErrors()){//表单验证错误,返回注册页面
 			return "registerForm";
 		}
 		//保存图片到文件系统
 		try {
-			profilePicture.transferTo(new File("/data/spittr" + profilePicture.getOriginalFilename()));
+			String uploadDir = session.getServletContext().getRealPath("/resources/uploads");
+			File dir = new File(uploadDir);
+	        if (!dir.exists() && !dir.isDirectory()) {//创建保存文件地址
+	            dir.mkdirs();
+	        }
+	        if(profilePicture.getSize() != 0){ // 文件不为空
+	        	File file = new File(dir + File.separator + profilePicture.getOriginalFilename());
+	        	profilePicture.transferTo(file);
+	        }
 		} catch (IllegalStateException | IOException e) {
+			e.printStackTrace();
 			throw new ImageUploadException("Unable to save image",e);
 		} 
 //		savaImage(profilePicture);//保存图片到Amazon s3中
@@ -70,7 +81,9 @@ public class SpitterController {
 		
 //		return "redirect:/spitter/" + spitter.getUsername();//重定向，后面连接字符串，不安全
 		model.addAttribute("username",spitter.getUsername());
-		model.addAttribute("spitter", spitter);//RedirectAttributes model,重定向model，可以传递对象
+		//Spring提供了将数据发送为flash属性（flash attribute） 的功能。 按照定义，
+		//flash属性会一直携带这些数据直到下一次请求， 然后才会消失
+		model.addFlashAttribute("spitter", spitter);//RedirectAttributes的addFlashAttribute方法,重定向model，可以传递对象
 		return "redirect:/spitter/{username}";
 	}
 	

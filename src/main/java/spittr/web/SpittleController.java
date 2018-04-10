@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import spittr.Spittle;
 import spittr.data.SpittleRepository;
+import spittr.entity.Spittle;
 import spittr.exception.DuplicateSpittleException;
 import spittr.exception.SpittleNotFoundException;
 

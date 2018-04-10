@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import spittr.Spittle;
 import spittr.data.SpittleRepository;
+import spittr.entity.Spittle;
 import spittr.exception.DuplicateSpittleException;
 
 @Service("spittleRepository")

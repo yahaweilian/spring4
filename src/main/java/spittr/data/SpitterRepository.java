@@ -1,6 +1,6 @@
 package spittr.data;
 
-import spittr.Spitter;
+import spittr.entity.Spitter;
 
 public interface SpitterRepository {
 

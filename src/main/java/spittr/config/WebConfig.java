@@ -8,8 +8,12 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.core.annotation.Order;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
@@ -65,7 +69,7 @@ public class WebConfig extends WebMvcConfigurerAdapter{
 	public TilesConfigurer tilesConfigurer(){//tile页面布局设置
 		TilesConfigurer tiles = new TilesConfigurer();
 		tiles.setDefinitions(new String[]{
-				"/WEB-INF/**/tiles.xml"
+				"/WEB-INF/**/*tiles.xml"
 		});
 		tiles.setCheckRefresh(true);//启动刷新功能
 		return tiles;
@@ -75,6 +79,7 @@ public class WebConfig extends WebMvcConfigurerAdapter{
 	public ViewResolver tilesViewResolver(){//将逻辑视图名解析为Tile定义
 		TilesViewResolver viewResolver = new TilesViewResolver();//这里要引用tiles3的包，而非tiles2的包，否则会报错：java.lang.ClassNotFoundException: org.apache.tiles.TilesApplicationContext
 		viewResolver.setOrder(1);
+//		viewResolver.setCache(false);//开发时不启用缓存，改动即可生效
 		return viewResolver;
 	}
 	/*------------------------------------------------------------------------------*/
@@ -85,6 +90,8 @@ public class WebConfig extends WebMvcConfigurerAdapter{
 		ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
 		viewResolver.setTemplateEngine(templateEngine);
 		viewResolver.setOrder(3);
+//		viewResolver.setViewNames(new String[]{"*html"});
+//		viewResolver.setCache(false);//开发时不启用缓存，改动即可生效
 		return viewResolver;
 	}
 	@Bean
@@ -100,22 +107,27 @@ public class WebConfig extends WebMvcConfigurerAdapter{
 		templateResolver.setPrefix("/WEB-INF/templates/");
 		templateResolver.setSuffix(".html");
 		templateResolver.setTemplateMode("HTML5");
+		templateResolver.setCharacterEncoding("UTF-8");
 		return templateResolver;
 	}
 	/*-----------------------------------------------------------------------------*/
 	/*------------------------------上传图片的配置-------------------------------------*/
-	@Bean
+	/*@Bean
 	public MultipartResolver multipartResolver() throws IOException{//配置multipart解析器
 		return new StandardServletMultipartResolver();
-	}
+	}*/
 	/**
 	 * 如果我们需要将应用部署到非Servlet 3.0的容器中， 那么就得需要替代的方案
 	 */
-//	@Bean
-//	public MultipartResolver multipartResolver() throws IOException{
-//		CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
-//		multipartResolver.setUploadTempDir("/tmp/spittr/uploads");
-//	}
+	@Bean
+	public MultipartResolver multipartResolver() throws IOException{
+		CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
+//		Resource uploadTempDir = new FileSystemResource("uploads/temps");
+//		multipartResolver.setUploadTempDir(uploadTempDir);
+		
+		multipartResolver.setMaxUploadSize(2097152);
+		return multipartResolver;
+	}
 	
 	/*值得一提的是， 如果在编写控制器方法的时候， 通过Part参数的形式接受文件上传， 那么就没有必要配置MultipartResolver了。 只有使
 	用MultipartFile的时候， 我们才需要MultipartResolver。*/
