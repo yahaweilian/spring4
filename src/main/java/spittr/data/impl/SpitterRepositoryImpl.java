@@ -1,23 +1,25 @@
 package spittr.data.impl;
 
-import org.springframework.stereotype.Service;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
-import spittr.data.SpitterRepository;
-import spittr.entity.Spitter;
+import spittr.data.SpitterSweeper;
 
-@Service("spitterRepository")
-public class SpitterRepositoryImpl implements SpitterRepository {
+public class SpitterRepositoryImpl implements SpitterSweeper {
 
+	@PersistenceContext
+	private EntityManager em;
+	
 	@Override
-	public Spitter save(Spitter spitter) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Spitter findByUsername(String username) {
-		// TODO Auto-generated method stub
-		return null;
+	public int eliteSweep() {
+		String update = "UPDATE Spitter spitter" +
+	"SET spitter.status = 'Elite'"
+	+ "WHERE spitter.status= 'Newbie'"
+	+ "AND spitter.id IN ("
+	+ "SELECT s FROM Spitter s WHERE ("
+	+ "SELECT COUNT(spittles) FROM s.spittles spittles) >10000"
+	+ ")";
+		return em.createQuery(update).executeUpdate();
 	}
 
 }

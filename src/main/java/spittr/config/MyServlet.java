@@ -1,4 +1,4 @@
-package spittr.config;
+/*package spittr.config;
 
 import java.io.IOException;
 
@@ -8,10 +8,10 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
-/**
+*//**
  * 自定义Servlet
  *
- */
+ *//*
 public class MyServlet implements Servlet{
 
 	@Override
@@ -46,3 +46,4 @@ public class MyServlet implements Servlet{
 
 
 }
+*/

@@ -1,13 +1,20 @@
 package spittr.entity;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+@Entity
 public class Spitter {
 
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
     @NotNull
@@ -26,6 +33,8 @@ public class Spitter {
     @Size(min=2,max=30,message="{lastName.size }")
 	private String lastName;
 	
+    private String email;
+    
     public Spitter(){}
     
 	public Spitter(Long id, String username, String password, String firstName, String lastName) {
@@ -78,6 +87,14 @@ public class Spitter {
 
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
+	}
+    
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	@Override

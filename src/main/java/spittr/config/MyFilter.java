@@ -1,5 +1,6 @@
 package spittr.config;
 
+import org.springframework.context.annotation.Profile;
 import java.io.IOException;
 
 import javax.servlet.Filter;
@@ -13,6 +14,7 @@ import javax.servlet.ServletResponse;
  * 自定义的Filter
  *
  */
+@Profile("gg")
 public class MyFilter implements Filter {
 
 	@Override

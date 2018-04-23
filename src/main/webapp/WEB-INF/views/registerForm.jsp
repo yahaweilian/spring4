@@ -9,6 +9,7 @@
    <body>
       <h1>Register</h1>
       <!-- 表单会根据commandName属性构建针对某个模型对象的上下文信息 -->
+      <!-- 这里用的spring4的标签，换成spring 5 会报错，识别不了 commandName-->
       <sf:form action="register" method="post" commandName="spitter" enctype="multipart/form-data">
       <sf:errors path="*" element="div" cssClass="errors" />
          <sf:label path="firstName" cssErrorClass="error">First Name:</sf:label> 

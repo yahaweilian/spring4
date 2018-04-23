@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.amazonaws.auth.AWSCredentials;
+/*import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3Client;
@@ -25,7 +25,7 @@ import com.amazonaws.services.s3.model.AccessControlList;
 import com.amazonaws.services.s3.model.Bucket;
 import com.amazonaws.services.s3.model.GroupGrantee;
 import com.amazonaws.services.s3.model.ObjectMetadata;
-import com.amazonaws.services.s3.model.Permission;
+import com.amazonaws.services.s3.model.Permission;*/
 
 import spittr.data.SpitterRepository;
 import spittr.entity.Spitter;
@@ -99,7 +99,7 @@ public class SpitterController {
 	/**
 	 * 上传图片到Amazon s3
 	 */
-	private void savaImage(MultipartFile image) throws ImageUploadException{
+	/*private void savaImage(MultipartFile image) throws ImageUploadException{
 		try {
 			// 创建凭证
 			AWSCredentials awsCredentials = new BasicAWSCredentials("accessKey", "secretKey");//TODO
@@ -128,5 +128,5 @@ public class SpitterController {
 			throw new ImageUploadException("Unable to save image",e);
 		}
 		
-	}
+	}*/
 }

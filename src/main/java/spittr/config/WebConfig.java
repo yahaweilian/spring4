@@ -29,7 +29,7 @@ import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import spittr.web.HomeController;
 
 /**
- * @author Administrator
+ * @author yding
  * DispatcherServlet配置
  */
 @Configuration

@@ -2,11 +2,16 @@ package spittr.entity;
 
 import java.util.Date;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+@Entity
 public class Spittle {
 
+	@Id
 	private final Long id;
 	private final String message;
 	private final Date time;
