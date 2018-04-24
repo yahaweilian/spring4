@@ -51,7 +51,7 @@ public class RootConfig {
 	}
 	@Bean
 	@Profile("qa")
-	public DataSource Data(){//QA 数据源
+	public DataSource Data(){//测试数据源
 		BasicDataSource ds = new BasicDataSource();//dbcp连接池
 		DriverManagerDataSource ds2 = new DriverManagerDataSource();// JDBC数据源
 		ds.setDriverClassName("org.h2.Driver");

@@ -37,7 +37,7 @@ public class SpittleController {
 	public List<Spittle> spittles(
 			@RequestParam(value="max",defaultValue="1000000000") long max,
 			@RequestParam(value="count",defaultValue="20") int count){
-		return spittleRepository.findSpittles(max, count);
+		return spittleRepository.findSpittles(max, count);//返回页面“spittles"与方法名相同，如上
 	}
 	
 	@RequestMapping(value="/{spittleId}",method=RequestMethod.GET)
@@ -53,7 +53,7 @@ public class SpittleController {
 	}
 	
 	public String savaSpittle(Spittle spittle,Model model) throws DuplicateSpittleException{
-		spittleRepository.save(spittle);
+		spittleRepository.saveSpittle(spittle);
 		model.addAttribute("max", 100000);
 		model.addAttribute("count", 20);
 		return "redirect:/spittles";

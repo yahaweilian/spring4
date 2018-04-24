@@ -1,15 +1,11 @@
 package spittr.data;
 
-import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import spittr.entity.Spittle;
-import spittr.exception.DuplicateSpittleException;
 
-public interface SpittleRepository {
+public interface SpittleRepository extends JpaRepository<Spittle, Long>,SpittleSweeper{
 
-	List<Spittle> findSpittles(long max,int count);
+//	Spittle findOne(long spittleId);
 
-	Spittle findOne(long spittleId);
-
-	void save(Spittle spittle) throws DuplicateSpittleException;
 }

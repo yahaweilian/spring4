@@ -52,8 +52,8 @@ public class SpitterController {
 	}
 	
 	@RequestMapping(value="/register",method=RequestMethod.POST)
-	public String processRegistration(
-			@RequestPart("profilePicture") MultipartFile profilePicture,
+	public String processRegistration(//在multipart中， 每个输入域都会对应一个part
+			@RequestPart("profilePicture") MultipartFile profilePicture,//或者byte[] profilePicture
 			@Valid Spitter spitter,
 			Errors errors,
 			RedirectAttributes model,

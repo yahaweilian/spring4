@@ -2,6 +2,9 @@ package spittr.config;
 
 import java.io.IOException;
 
+import javax.validation.ValidatorFactory;
+
+import org.hibernate.validator.HibernateValidator;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -12,6 +15,7 @@ import org.springframework.core.io.ClassPathResource;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
@@ -40,16 +44,25 @@ useDefaultFilters = false)
 public class WebConfig extends WebMvcConfigurerAdapter{
 
 	@Bean
-	public MessageSource messageSource(){//国际化
+	public MessageSource messageSource(){//国际化信息、错误信息
 //		ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
 //		messageSource.setBasename("messages");//设置在根类路径下
 		
 		ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
 		messageSource.setBasename("classpath:///messages");//设置在类路径下
+//		messageSource.setBasenames("classpath:///messages","classpath:///ValidationMessages");//设置在类路径下
 //		messageSource.setBasename("file:///etc/spittr/messages");
 		messageSource.setCacheSeconds(10);
 		return messageSource;
 	}
+	
+	/*@Bean
+	public ValidatorFactory validatorFactory(MessageSource messageSource){
+		LocalValidatorFactoryBean validatorFactory =  new LocalValidatorFactoryBean();
+		validatorFactory.setProviderClass(HibernateValidator.class);
+		validatorFactory.setValidationMessageSource(messageSource);
+		return validatorFactory;
+	}*/
 	
 	@Bean
 	@Order(2)
