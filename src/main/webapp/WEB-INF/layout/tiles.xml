@@ -16,4 +16,8 @@
         <put-attribute name="body" value="/WEB-INF/views/registerForm.jsp"></put-attribute>
     </definition>
     
+    <definition name="loginForm" extends="base">
+        <put-attribute name="body" value="/WEB-INF/views/loginForm.jsp"></put-attribute>
+    </definition>
+    
 </tiles-definitions>

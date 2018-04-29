@@ -6,10 +6,9 @@
    <link rel="stylesheet" type="text/css" th:href="@{/resources/style.css}">
 </head>
 <body>
-   <h1>Welcome to Spittr</h1>
-   
-   <a th:href="@{/spittles}">Spittles</a> |
-   <a th:href="@{/spitter/register}">Register</a> |
-   <a th:href="@{/spitter/login}">Sign in</a>
+   <h1>Your Profile</h1>
+      <span th:text="${spitter.username }" ></span> <br/>
+      <span th:text="${spitter.firstName }" ></span>
+      <span th:text="${spitter.lastName }" ></span> 
 </body>
 </html>

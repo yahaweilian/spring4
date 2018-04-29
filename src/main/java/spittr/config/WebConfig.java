@@ -2,23 +2,15 @@ package spittr.config;
 
 import java.io.IOException;
 
-import javax.validation.ValidatorFactory;
-
-import org.hibernate.validator.HibernateValidator;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.core.annotation.Order;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.FileSystemResource;
-import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
-import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
@@ -50,14 +42,14 @@ public class WebConfig extends WebMvcConfigurerAdapter{
 		
 		ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
 		messageSource.setBasename("classpath:///messages");//设置在类路径下
-//		messageSource.setBasenames("classpath:///messages","classpath:///ValidationMessages");//设置在类路径下
+//		messageSource.setBasenames("classpath:///messages","classpath:///ValidationMessages");//验证信息文件默认ValidationMessages
 //		messageSource.setBasename("file:///etc/spittr/messages");
 		messageSource.setCacheSeconds(10);
 		return messageSource;
 	}
 	
 	/*@Bean
-	public ValidatorFactory validatorFactory(MessageSource messageSource){
+	public ValidatorFactory validatorFactory(MessageSource messageSource){//这里注释掉使用默认
 		LocalValidatorFactoryBean validatorFactory =  new LocalValidatorFactoryBean();
 		validatorFactory.setProviderClass(HibernateValidator.class);
 		validatorFactory.setValidationMessageSource(messageSource);
@@ -65,7 +57,7 @@ public class WebConfig extends WebMvcConfigurerAdapter{
 	}*/
 	
 	@Bean
-	@Order(2)
+//	@Order(2)
 	public ViewResolver viewResolver(){//配置 jsp视图解析器
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
 		resolver.setPrefix("/WEB-INF/views/");
@@ -88,23 +80,23 @@ public class WebConfig extends WebMvcConfigurerAdapter{
 		return tiles;
 	}
 	@Bean
-	@Order(1)
+//	@Order(1)
 	public ViewResolver tilesViewResolver(){//将逻辑视图名解析为Tile定义
 		TilesViewResolver viewResolver = new TilesViewResolver();//这里要引用tiles3的包，而非tiles2的包，否则会报错：java.lang.ClassNotFoundException: org.apache.tiles.TilesApplicationContext
 		viewResolver.setOrder(1);
-//		viewResolver.setCache(false);//开发时不启用缓存，改动即可生效
+		viewResolver.setCache(false);//开发时不启用缓存，改动即可生效
 		return viewResolver;
 	}
 	/*------------------------------------------------------------------------------*/
 	/*-------------------------------thymeleaf---------------------------------------*/
 	@Bean
-	@Order(3)
+//	@Order(3)
 	public ViewResolver thymeleafViewResolver(SpringTemplateEngine templateEngine){//thymeleaf视图解析器
 		ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
 		viewResolver.setTemplateEngine(templateEngine);
 		viewResolver.setOrder(3);
 //		viewResolver.setViewNames(new String[]{"*html"});
-//		viewResolver.setCache(false);//开发时不启用缓存，改动即可生效
+		viewResolver.setCache(false);//开发时不启用缓存，改动即可生效
 		return viewResolver;
 	}
 	@Bean
@@ -151,5 +143,10 @@ public class WebConfig extends WebMvcConfigurerAdapter{
 		//配置静态资源的处理
 		configurer.enable();
 	}
+	
+	/*@Override
+	public void addResourceHandlers(ResourceHandlerRegistry registry) {
+		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
+	}*/
 	
 }
