@@ -51,6 +51,7 @@
 	    	<param-value>dev</param-value>
 	   	</init-param>
 	    <load-on-startup>1</load-on-startup>
+	    <!-- 启用multipart请求,配置 -->
 	    <multipart-config>
 	        <location>/tmp/spittr/uploads</location>
 	        <max-file-size>2097152</max-file-size>
@@ -62,7 +63,11 @@
 	    <servlet-name>appServlet</servlet-name>
 	    <url-pattern>/</url-pattern>
 	</servlet-mapping>
-
+    <!-- 配置Hessian控制器 -->
+    <servlet-mapping>
+        <servlet-name>appServlet</servlet-name>
+        <url-pattern>*.service</url-pattern>
+    </servlet-mapping>
     <!-- 中文乱码 -->
 	<filter>
 	<filter-name>CharacterEncodingFilter</filter-name>

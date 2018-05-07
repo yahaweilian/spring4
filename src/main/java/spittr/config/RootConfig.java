@@ -1,6 +1,9 @@
 package spittr.config;
 
 
+import java.net.MalformedURLException;
+import java.net.URL;
+
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
@@ -24,7 +27,13 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor;
 import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.remoting.jaxws.JaxWsPortProxyFactoryBean;
+import org.springframework.remoting.jaxws.SimpleJaxWsServiceExporter;
+import org.springframework.remoting.rmi.RmiProxyFactoryBean;
+import org.springframework.remoting.rmi.RmiServiceExporter;
 import org.springframework.stereotype.Controller;
+
+import spittr.service.SpitterService;
 
 /**
  * 
@@ -129,4 +138,61 @@ public class RootConfig {
 	public JpaTransactionManager transactionManager(EntityManagerFactory emf){
 		return new JpaTransactionManager(emf);
 	}
+
+	/*---------------------------远程服务----------------------------*/
+	/**
+	 * RMI 服务端配置
+	 * @param spitterService
+	 * @return
+	 */
+	@Bean
+	public RmiServiceExporter rmiExporter(SpitterService spitterService) {
+		RmiServiceExporter rmiExporter = new RmiServiceExporter();
+		rmiExporter.setService(spitterService);
+		rmiExporter.setServiceName("SpitterService");
+		rmiExporter.setServiceInterface(SpitterService.class);
+		return rmiExporter;
+	}
+	/**
+	 * RMI 远程方法调用(客户端配置)
+	 * RMI 的限制：① RMI很难穿越防火墙， 这是因为RMI使用任意端口来交互——这是防火墙
+     * 通常所不允许的。 在企业内部网络环境中， 我们通常不需要担心这个问题。 但是如果在互联网上运行， 我们用RMI可能会遇到麻烦
+     *  ②RMI是基于Java的。必须要保证在调用两端的Java运行时中是完全相同的版本
+	 * @return
+	 */
+	/*@Bean
+	public RmiProxyFactoryBean spitterService(){
+		RmiProxyFactoryBean rmiProxy = new RmiProxyFactoryBean();
+		rmiProxy.setServiceUrl("rmi://localhost/SpitterService");
+		rmiProxy.setServiceInterface(SpitterService.class);
+		return rmiProxy;
+	}*/
+	
+	/**
+	 * JaxWs服务端配置
+	 * SimpleJaxWsServiceExporter将bean转变为JAX-WS端点
+	 * 当启动的时候， 它会搜索Spring应用上下文来查找所有使用@WebService注解的bean
+	 * @return
+	 */
+	@Bean
+	public SimpleJaxWsServiceExporter jaxWsExporter(){
+		SimpleJaxWsServiceExporter exporter = new SimpleJaxWsServiceExporter();
+		exporter.setBaseAddress("http://localhost:8888/services/");
+		return exporter;
+	}
+	/**
+	 * JaxWs客户端配置
+	 * @return
+	 * @throws MalformedURLException
+	 */
+	/*@Bean
+	public JaxWsPortProxyFactoryBean spitterService() throws MalformedURLException{
+		JaxWsPortProxyFactoryBean proxy = new JaxWsPortProxyFactoryBean();
+		proxy.setWsdlDocumentUrl(new URL("http://localhost:8888/services/SpitterService?wsdl"));
+		proxy.setPortName("spitterServiceHttpPort");
+		proxy.setServiceInterface(SpitterService.class);
+		proxy.setNamespaceUri("http://spitter.com");
+		return proxy;
+	}*/
+	
 }

@@ -113,6 +113,9 @@ public class SpitterController {
 		if (spitter == null) {
 			throw new SpitterNotFoundException();
 		}
+		if (!spitter.getPassword().equals(loginUser.getPassword())){
+			return "loginForm";
+		}
 		model.addAttribute("username", spitter.getUsername());
 		model.addFlashAttribute("spitter", spitter);// RedirectAttributes的addFlashAttribute方法,重定向model，可以传递对象
 		return "redirect:/spitter/{username}";

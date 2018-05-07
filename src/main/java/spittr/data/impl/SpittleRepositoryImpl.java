@@ -5,13 +5,10 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import org.springframework.stereotype.Service;
-
 import spittr.data.SpittleSweeper;
 import spittr.entity.Spittle;
 import spittr.exception.DuplicateSpittleException;
 
-@Service("spittleRepository")
 public class SpittleRepositoryImpl implements SpittleSweeper {
 
 	@PersistenceContext

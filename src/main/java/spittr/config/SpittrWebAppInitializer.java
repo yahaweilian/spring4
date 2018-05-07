@@ -32,7 +32,7 @@
 //
 //	@Override
 //	protected String[] getServletMappings() {
-//		return new String[]{"/"};//将DispatcherServlet 映射到"/"
+//		return new String[]{"/","*.service"};//将DispatcherServlet 映射到"/"
 //	}
 //
 //	@Override
