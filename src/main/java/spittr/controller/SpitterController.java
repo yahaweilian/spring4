@@ -1,4 +1,4 @@
-package spittr.web;
+package spittr.controller;
 
 import java.io.File;
 import java.io.IOException;

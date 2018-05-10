@@ -7,4 +7,4 @@ CREATE TABLE `Spittle` (
   PRIMARY KEY (`id`)
 );
 
- 
+insert into Spittle values(null,'message',null,33,44);

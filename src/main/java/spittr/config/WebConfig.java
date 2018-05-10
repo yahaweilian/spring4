@@ -3,22 +3,44 @@ package spittr.config;
 import java.io.IOException;
 import java.util.Properties;
 
+import javax.jms.Connection;
+import javax.jms.ConnectionFactory;
+import javax.jms.JMSException;
+import javax.swing.JScrollBar;
+
+import org.apache.activemq.ActiveMQConnectionFactory;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
+import org.springframework.core.annotation.Order;
+import org.springframework.http.MediaType;
+import org.springframework.jms.annotation.JmsListener;
+import org.springframework.jms.annotation.JmsListenerConfigurer;
+import org.springframework.jms.config.JmsListenerContainerFactory;
+import org.springframework.jms.config.JmsListenerEndpoint;
+import org.springframework.jms.config.JmsListenerEndpointRegistrar;
+import org.springframework.jms.connection.CachingConnectionFactory;
+import org.springframework.jms.core.JmsOperations;
+import org.springframework.jms.core.JmsTemplate;
+import org.springframework.jms.listener.MessageListenerContainer;
+import org.springframework.jms.remoting.JmsInvokerProxyFactoryBean;
+import org.springframework.jms.remoting.JmsInvokerServiceExporter;
 import org.springframework.remoting.caucho.HessianServiceExporter;
 import org.springframework.remoting.httpinvoker.HttpInvokerServiceExporter;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.accept.ContentNegotiationManager;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 import org.springframework.web.servlet.HandlerMapping;
 import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.handler.SimpleUrlHandlerMapping;
+import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
@@ -26,8 +48,9 @@ import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 
+import spittr.controller.HomeController;
+import spittr.service.AlertService;
 import spittr.service.SpitterService;
-import spittr.web.HomeController;
 
 /**
  * @author yding DispatcherServlet配置
@@ -61,7 +84,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	 */
 
 	@Bean
-	// @Order(2)
+//	 @Order(1)
 	public ViewResolver viewResolver() {// 配置 jsp视图解析器
 		InternalResourceViewResolver resolver = new InternalResourceViewResolver();
 		resolver.setPrefix("/WEB-INF/views/");
@@ -82,11 +105,11 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	}
 
 	@Bean
-	// @Order(1)
+//	 @Order(1)
 	public ViewResolver tilesViewResolver() {// 将逻辑视图名解析为Tile定义
 		TilesViewResolver viewResolver = new TilesViewResolver();// 这里要引用tiles3的包，而非tiles2的包，否则会报错：java.lang.ClassNotFoundException:
 																	// org.apache.tiles.TilesApplicationContext
-		viewResolver.setOrder(3);
+		viewResolver.setOrder(1);
 		viewResolver.setCache(false);// 开发时不启用缓存，改动即可生效
 		return viewResolver;
 	}
@@ -94,11 +117,11 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	/*------------------------------------------------------------------------------*/
 	/*-------------------------------thymeleaf---------------------------------------*/
 	@Bean
-	// @Order(3)
+//	 @Order(3)
 	public ViewResolver thymeleafViewResolver(SpringTemplateEngine templateEngine) {// thymeleaf视图解析器
 		ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
 		viewResolver.setTemplateEngine(templateEngine);
-		viewResolver.setOrder(1);
+		viewResolver.setOrder(3);
 		// viewResolver.setViewNames(new String[]{"*html"});
 		viewResolver.setCache(false);// 开发时不启用缓存，改动即可生效
 		return viewResolver;
@@ -123,6 +146,25 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	}
 
 	/*-----------------------------------------------------------------------------*/
+	
+	/*---------------------------REST----------------------------------------------*/
+	
+	/*@Override
+	public void configureContentNegotiation(ContentNegotiationConfigurer configurer){
+		//ContentNegotiationConfigurer中的一些方法对应于ContentNegotiationManager的Setter方法
+		configurer.defaultContentType(MediaType.TEXT_HTML);//设置了默认的内容类型为HTML
+	}
+	@Bean
+	public ViewResolver cnViewResolver(ContentNegotiationManager cnm){
+		//不建议使用
+		ContentNegotiatingViewResolver cnvr = new ContentNegotiatingViewResolver();
+		cnvr.setContentNegotiationManager(cnm);
+		return cnvr;
+	}*/
+	
+	
+	
+	
 	/*------------------------------上传图片的配置-------------------------------------*/
 	/*
 	 * @Bean public MultipartResolver multipartResolver() throws
@@ -163,7 +205,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 
 	/*------------------------------远程服务-----------------------------------/
 	/**
-	 * 导出Hessian服务(Hessian服务端配置)
+	 * ①导出Hessian服务(Hessian服务端配置)
 	 * 1.HessianServiceExporter是一个Spring MVC控制器， 它可以接收Hessian请求， 并把这些请求转换成对POJO的调用从而将POJO导出为一个Hessian服务
 	 * 2.与RmiServiceExporter不同的是， 我们不需要设置serviceName属性。 在RMI中， serviceName属性用来在RMI注册表中注册一个服
 	 *  务。 而Hessian没有注册表， 因此也就没必要为Hessian服务进行命名
@@ -212,7 +254,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	 * 它基于HTTP提供了RPC（像Hessian/Burlap一样） ， 同时又使用了 Java的对象序列化机制（像RMI一样） 。
 	 */
 	/**
-	 * HttpInvoker导出Bean(服务端配置)
+	 * ②HttpInvoker导出Bean(服务端配置)
 	 * 
 	 * @param service
 	 * @return
@@ -247,4 +289,45 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	 * proxy.setServiceUrl("http://localhost:8080/spring4/spitter.service");
 	 * proxy.setServiceInterface(SpitterService.class); return proxy; }
 	 */
+	
+	/**
+	 * ③导出基于JMS的服务
+	 * @param alertService
+	 * @return
+	 */
+	@Bean
+	@JmsListener(destination = "spitter.alert.queue")//配置JMS监听器容器 //TODO
+	public JmsInvokerServiceExporter alertServiceExporter(AlertService alertService){
+		JmsInvokerServiceExporter exporter = new JmsInvokerServiceExporter();
+		exporter.setService(alertService);
+		exporter.setServiceInterface(AlertService.class);
+		return exporter;
+	}
+	@Bean
+	public ConnectionFactory connectionFactory() throws JMSException{//连接工厂
+		ActiveMQConnectionFactory activeMQConnectionFactory = new ActiveMQConnectionFactory("tcp://localhost:61626");
+		ConnectionFactory connectionFactory = new CachingConnectionFactory(activeMQConnectionFactory);
+		return connectionFactory;
+	}
+	@Bean
+	public JmsOperations jmsOperations(ConnectionFactory connectionFactory){//JMS模板
+		JmsOperations jmsOperations = new JmsTemplate(connectionFactory);
+		return jmsOperations;
+	}
+	
+	/**
+	 * 客户端（异步消息）
+	 * @param connectionFactory
+	 * @return
+	 */
+    @Bean
+	public JmsInvokerProxyFactoryBean alertService(ConnectionFactory connectionFactory){
+		JmsInvokerProxyFactoryBean proxy = new JmsInvokerProxyFactoryBean();
+		proxy.setConnectionFactory(connectionFactory);//连接工厂
+		proxy.setQueueName("spittle.alert.queue");//队列名
+		proxy.setServiceInterface(AlertService.class);//服务接口
+		return proxy;
+	}
+	
+	
 }

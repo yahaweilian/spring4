@@ -1,9 +1,7 @@
 package spittr.config;
 
 
-import java.net.MalformedURLException;
-import java.net.URL;
-
+import javax.jms.ConnectionFactory;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
@@ -20,6 +18,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
+import org.springframework.jms.remoting.JmsInvokerProxyFactoryBean;
 import org.springframework.jndi.JndiObjectFactoryBean;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
@@ -27,12 +26,11 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor;
 import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
-import org.springframework.remoting.jaxws.JaxWsPortProxyFactoryBean;
 import org.springframework.remoting.jaxws.SimpleJaxWsServiceExporter;
-import org.springframework.remoting.rmi.RmiProxyFactoryBean;
 import org.springframework.remoting.rmi.RmiServiceExporter;
 import org.springframework.stereotype.Controller;
 
+import spittr.service.AlertService;
 import spittr.service.SpitterService;
 
 /**

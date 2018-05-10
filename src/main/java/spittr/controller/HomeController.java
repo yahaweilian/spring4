@@ -1,4 +1,4 @@
-package spittr.web;
+package spittr.controller;
 
 import static org.springframework.web.bind.annotation.RequestMethod.*;
 import org.springframework.stereotype.Controller;
