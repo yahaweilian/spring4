@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -21,6 +22,8 @@ public class Spittle implements Serializable{
 	private final Date time;
 	private Double latitude;
 	private Double longitude;
+	@Transient//不映射字段
+	private Spitter spitter;
 	
 	public Spittle(String message, Date time) {
 		this(message,time,null,null);
@@ -52,6 +55,14 @@ public class Spittle implements Serializable{
 
 	public Double getLongitude() {
 		return longitude;
+	}
+
+	public Spitter getSpitter() {
+		return spitter;
+	}
+
+	public void setSpitter(Spitter spitter) {
+		this.spitter = spitter;
 	}
 
 	@Override

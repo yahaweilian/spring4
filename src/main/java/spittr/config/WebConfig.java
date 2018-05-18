@@ -2,6 +2,7 @@ package spittr.config;
 
 import java.io.IOException;
 import java.util.Properties;
+import java.util.Set;
 
 import javax.jms.Connection;
 import javax.jms.ConnectionFactory;
@@ -9,6 +10,7 @@ import javax.jms.JMSException;
 import javax.swing.JScrollBar;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
+import org.h2.command.dml.SelectOrderBy;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -16,6 +18,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.MediaType;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.jms.annotation.JmsListener;
 import org.springframework.jms.annotation.JmsListenerConfigurer;
 import org.springframework.jms.config.JmsListenerContainerFactory;
@@ -47,6 +50,8 @@ import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
+import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
+import org.thymeleaf.templateresolver.ITemplateResolver;
 
 import spittr.controller.HomeController;
 import spittr.service.AlertService;
@@ -128,9 +133,10 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	}
 
 	@Bean
-	public SpringTemplateEngine templateEngine() {// 模板引擎
+	public SpringTemplateEngine templateEngine(Set<ITemplateResolver> resolvers) {// 模板引擎
 		SpringTemplateEngine templateEngine = new SpringTemplateEngine();
-		templateEngine.setTemplateResolver(templateResolver());
+//		templateEngine.setTemplateResolver(templateResolver());
+		templateEngine.setTemplateResolvers(resolvers);
 		templateEngine.setEnableSpringELCompiler(true);
 		return templateEngine;
 	}
@@ -142,11 +148,20 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		templateResolver.setSuffix(".html");
 		templateResolver.setTemplateMode("HTML5");
 		templateResolver.setCharacterEncoding("UTF-8");
+		templateResolver.setOrder(2);
 		return templateResolver;
 	}
 
+	@Bean
+	public ClassLoaderTemplateResolver emailTemplateResolver() {// 发送带有html内容邮件所用
+		ClassLoaderTemplateResolver resolver = new ClassLoaderTemplateResolver();
+		resolver.setPrefix("mail/");
+		resolver.setTemplateMode("HTML5");
+		resolver.setCharacterEncoding("UTF-8");
+		resolver.setOrder(1);//优先选择此模板解析器
+		return resolver;
+	}
 	/*-----------------------------------------------------------------------------*/
-	
 	/*---------------------------REST----------------------------------------------*/
 	
 	/*@Override
@@ -289,6 +304,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	 * proxy.setServiceUrl("http://localhost:8080/spring4/spitter.service");
 	 * proxy.setServiceInterface(SpitterService.class); return proxy; }
 	 */
+	/*-----------------------------------------------------------------------------------*/
 	
 	/**
 	 * ③导出基于JMS的服务

@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
@@ -20,6 +21,9 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseType;
 import org.springframework.jms.remoting.JmsInvokerProxyFactoryBean;
 import org.springframework.jndi.JndiObjectFactoryBean;
+import org.springframework.mail.MailSender;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -29,6 +33,8 @@ import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.remoting.jaxws.SimpleJaxWsServiceExporter;
 import org.springframework.remoting.rmi.RmiServiceExporter;
 import org.springframework.stereotype.Controller;
+
+import com.sun.mail.util.MailSSLSocketFactory;
 
 import spittr.service.AlertService;
 import spittr.service.SpitterService;
@@ -41,6 +47,7 @@ import spittr.service.SpitterService;
 @Configuration
 @EnableJpaRepositories(basePackages="spittr.data")//使用spring data 创建repository的实现
 @ComponentScan(value = "spittr",excludeFilters = @ComponentScan.Filter(Controller.class))
+@PropertySource("classpath:mailserver.properties")//引入properties文件属性
 public class RootConfig {
 
 	@Autowired
@@ -192,5 +199,21 @@ public class RootConfig {
 		proxy.setNamespaceUri("http://spitter.com");
 		return proxy;
 	}*/
+	/*----------------------------------------------------------------------------------*/
 	
+	/**
+	 * 邮件服务器配置
+	 * Spring Email
+	 * @param env
+	 * @return
+	 */
+	@Bean
+	public JavaMailSender mailSender(Environment env){
+		JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+		mailSender.setHost(env.getProperty("mailserver.host"));
+		mailSender.setPort(Integer.valueOf(env.getProperty("mailserver.port")));
+		mailSender.setUsername(env.getProperty("mailserver.username"));
+		mailSender.setPassword(env.getProperty("password"));
+		return mailSender;
+	}
 }

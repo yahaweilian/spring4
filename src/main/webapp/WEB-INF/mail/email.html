@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Spittr</title>
+<link rel="stylesheet" type="text/css" th:href="@{/resources/style.css}">
+</head>
+<body>
+
+	<img src="spitterLogo.png" th:src="cid:spitterLogo">
+	<h4>
+		<span th:text="${spitterName}"> Craig Walls</span> says...
+	</h4>
+	<i><span th:text="${spittleText}">Hello there!</span></i>
+</body>
+</html>
