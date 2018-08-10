@@ -6,12 +6,21 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b1e9f053-7739-4e24-8456-72b27da09a45" name="Default" comment="">
+    <list default="true" id="b1e9f053-7739-4e24-8456-72b27da09a45" name="Default" comment="Gson转换json字符串">
+      <change afterPath="$PROJECT_DIR$/src/main/java/spittr/config/WebSocketConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/spittr/config/WebSocketStompConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/spittr/controller/MarcoController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/spittr/service/SpittleFeedService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/spittr/service/impl/SpittleFeedServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/spittr/util/PropertiesUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/spittr/util/Shout.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/spittr/webSocket/MarcoHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/test.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/webSocket/stompClient.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/webSocket/webSocketClient.jsp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/com/myapp/TestProperties.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/spittr/config/RootConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/spittr/config/RootConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/spittr/config/WebConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/spittr/config/WebConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/home.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/home.jsp" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -40,34 +49,39 @@
     <favorites_list name="spring4" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="SpitterServiceEndpoint.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/spittr/webservice/SpitterServiceEndpoint.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="95">
-              <caret line="5" column="62" lean-forward="true" selection-start-line="5" selection-start-column="62" selection-end-line="5" selection-end-column="62" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RootConfig.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/spittr/config/RootConfig.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="19">
-              <caret line="156" selection-start-line="156" selection-end-line="157" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GroovyConsoleState">
+    <option name="list">
+      <list>
+        <Entry>
+          <option name="url" value="file://$APPLICATION_CONFIG_DIR$/consoles/groovy/groovy_console.groovy" />
+          <option name="moduleName" value="spring4" />
+          <option name="title" value="spring4 (Bundled Groovy 2.4.12)" />
+        </Entry>
+      </list>
+    </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
         <option value="E:/Mvn Repo/mvn_repo_fun/settings.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/spittr/webSocket/MarcoHandler.java" />
+        <option value="$PROJECT_DIR$/src/main/java/spittr/TestProperties.java" />
+        <option value="$PROJECT_DIR$/src/test/java/com/myapp/TestProperties.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/test.properties" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/spittr/util/PropertiesUtil.java" />
       </list>
     </option>
   </component>
@@ -99,7 +113,12 @@
   </component>
   <component name="MavenProjectNavigator">
     <treeState>
-      <expand />
+      <expand>
+        <path>
+          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
+          <item name="spring4 Maven Webapp" type="9519ce18:MavenProjectsStructure$ProjectNode" />
+        </path>
+      </expand>
       <select />
     </treeState>
   </component>
@@ -107,14 +126,15 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="85" />
-    <option name="y" value="25" />
-    <option name="width" value="1750" />
+    <option name="x" value="385" />
+    <option name="y" value="450" />
+    <option name="width" value="1415" />
     <option name="height" value="970" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
     <navigator proportions="" version="1">
+      <autoscrollFromSource ProjectPane="true" />
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
@@ -158,16 +178,43 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="spittr" type="462c0819:PsiDirectoryNode" />
-              <item name="config" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="spring4" type="b2602c69:ProjectViewProjectNode" />
               <item name="spring4" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spring4" type="b2602c69:ProjectViewProjectNode" />
+              <item name="spring4" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spring4" type="b2602c69:ProjectViewProjectNode" />
+              <item name="spring4" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="spittr" type="462c0819:PsiDirectoryNode" />
-              <item name="webservice" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spring4" type="b2602c69:ProjectViewProjectNode" />
+              <item name="spring4" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="myapp" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spring4" type="b2602c69:ProjectViewProjectNode" />
+              <item name="spring4" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="test" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="web" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="spring4" type="b2602c69:ProjectViewProjectNode" />
@@ -176,7 +223,112 @@
             <path>
               <item name="spring4" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Maven: antlr:antlr:2.7.7" type="70bed36:NamedLibraryElementNode" />
+              <item name="&lt; 1.8 &gt;" type="70bed36:NamedLibraryElementNode" />
+            </path>
+            <path>
+              <item name="spring4" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; 1.8 &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="rt.jar" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spring4" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; 1.8 &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="rt.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spring4" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; 1.8 &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="rt.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="lang" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spring4" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="&lt; 1.8 &gt;" type="70bed36:NamedLibraryElementNode" />
+              <item name="rt.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="lang" type="462c0819:PsiDirectoryNode" />
+              <item name="reflect" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spring4" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: com.google.code.gson:gson:2.8.5" type="70bed36:NamedLibraryElementNode" />
+            </path>
+            <path>
+              <item name="spring4" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: com.google.code.gson:gson:2.8.5" type="70bed36:NamedLibraryElementNode" />
+              <item name="gson-2.8.5.jar" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spring4" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: com.google.code.gson:gson:2.8.5" type="70bed36:NamedLibraryElementNode" />
+              <item name="gson-2.8.5.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="gson" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spring4" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
+              <item name="Maven: com.google.code.gson:gson:2.8.5" type="70bed36:NamedLibraryElementNode" />
+              <item name="gson-2.8.5.jar" type="462c0819:PsiDirectoryNode" />
+              <item name="gson" type="462c0819:PsiDirectoryNode" />
+              <item name="reflect" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spring4" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Scratches and Consoles" type="1a2a3e82:ScratchProjectViewPane$MyProjectNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="AndroidView">
+        <subPane>
+          <expand>
+            <path>
+              <item name="spring4" type="1abcf292:AndroidViewProjectNode" />
+              <item name="spring4" type="e9137016:NonAndroidModuleNode" />
+            </path>
+            <path>
+              <item name="spring4" type="1abcf292:AndroidViewProjectNode" />
+              <item name="spring4" type="e9137016:NonAndroidModuleNode" />
+              <item name="java" type="f7eae187:NonAndroidSourceTypeNode" />
+            </path>
+            <path>
+              <item name="spring4" type="1abcf292:AndroidViewProjectNode" />
+              <item name="spring4" type="e9137016:NonAndroidModuleNode" />
+              <item name="java" type="f7eae187:NonAndroidSourceTypeNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spring4" type="1abcf292:AndroidViewProjectNode" />
+              <item name="spring4" type="e9137016:NonAndroidModuleNode" />
+              <item name="java" type="f7eae187:NonAndroidSourceTypeNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="restful" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="spring4" type="1abcf292:AndroidViewProjectNode" />
+              <item name="spring4" type="e9137016:NonAndroidModuleNode" />
+              <item name="resources" type="f7eae187:NonAndroidSourceTypeNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="PackagesPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="spring4" type="58d84e3e:PackageViewProjectNode" />
+              <item name="spring4" type="616d4139:PackageViewModuleNode" />
             </path>
           </expand>
           <select />
@@ -236,61 +388,21 @@
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="spring4" type="58d84e3e:PackageViewProjectNode" />
-              <item name="spring4" type="616d4139:PackageViewModuleNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="AndroidView">
-        <subPane>
-          <expand>
-            <path>
-              <item name="spring4" type="1abcf292:AndroidViewProjectNode" />
-              <item name="spring4" type="e9137016:NonAndroidModuleNode" />
-            </path>
-            <path>
-              <item name="spring4" type="1abcf292:AndroidViewProjectNode" />
-              <item name="spring4" type="e9137016:NonAndroidModuleNode" />
-              <item name="java" type="f7eae187:NonAndroidSourceTypeNode" />
-            </path>
-            <path>
-              <item name="spring4" type="1abcf292:AndroidViewProjectNode" />
-              <item name="spring4" type="e9137016:NonAndroidModuleNode" />
-              <item name="java" type="f7eae187:NonAndroidSourceTypeNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="spring4" type="1abcf292:AndroidViewProjectNode" />
-              <item name="spring4" type="e9137016:NonAndroidModuleNode" />
-              <item name="java" type="f7eae187:NonAndroidSourceTypeNode" />
-              <item name="com" type="462c0819:PsiDirectoryNode" />
-              <item name="restful" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="spring4" type="1abcf292:AndroidViewProjectNode" />
-              <item name="spring4" type="e9137016:NonAndroidModuleNode" />
-              <item name="resources" type="f7eae187:NonAndroidSourceTypeNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="E:/Users/23290/Desktop/dsywweb" />
-    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2671371" />
-    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="spittr" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -304,9 +416,77 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.TestProperties">
+    <configuration name="TestProperties (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="spittr.TestProperties" />
+      <module name="spring4" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="spittr.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+    </configuration>
+    <configuration name="TestProperties" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.myapp.TestProperties" />
+      <module name="spring4" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.myapp.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+    </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+    </configuration>
+    <configuration name="DataSourceConfigTest.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="spring4" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.myapp.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="com.myapp" />
+      <option name="MAIN_CLASS_NAME" value="com.myapp.DataSourceConfigTest" />
+      <option name="METHOD_NAME" value="test" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <patterns />
+    </configuration>
+    <configuration name="HomeControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="spring4" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="spittr.web.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="spittr.web" />
+      <option name="MAIN_CLASS_NAME" value="spittr.web.HomeControllerTest" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="%MODULE_WORKING_DIR%" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <patterns />
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -418,6 +598,21 @@
         </option>
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Tomcat Server.tomcat8" />
+      <item itemvalue="Application.TestProperties" />
+      <item itemvalue="JUnit.DataSourceConfigTest.test" />
+      <item itemvalue="JUnit.HomeControllerTest" />
+      <item itemvalue="Application.TestProperties (1)" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.TestProperties" />
+        <item itemvalue="Application.TestProperties (1)" />
+        <item itemvalue="JUnit.HomeControllerTest" />
+        <item itemvalue="JUnit.DataSourceConfigTest.test" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -433,6 +628,16 @@
       <workItem from="1524030345720" duration="1973000" />
       <workItem from="1524190643614" duration="3125000" />
       <workItem from="1526527071833" duration="1978000" />
+      <workItem from="1526880317920" duration="115000" />
+      <workItem from="1533567077593" duration="5000" />
+      <workItem from="1533567125720" duration="27000" />
+      <workItem from="1533567197079" duration="282000" />
+      <workItem from="1533567684140" duration="4000" />
+      <workItem from="1533568140928" duration="1611000" />
+      <workItem from="1533825095706" duration="3464000" />
+      <workItem from="1533828929076" duration="30000" />
+      <workItem from="1533829655541" duration="6000" />
+      <workItem from="1533830064519" duration="4537000" />
     </task>
     <servers />
   </component>
@@ -443,9 +648,15 @@
     <history-entry file="All_in_spring4 - 2018.04.20 at 10h 20m 47s.xml">
       <configuration name="All in spring4" configurationId="AndroidJUnit" />
     </history-entry>
+    <history-entry file="DataSourceConfigTest_test - 2018.08.09 at 22h 40m 29s.xml">
+      <configuration name="DataSourceConfigTest.test" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="HomeControllerTest - 2018.08.09 at 22h 40m 52s.xml">
+      <configuration name="HomeControllerTest" configurationId="JUnit" />
+    </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="7868000" />
+    <option name="totallyTimeSpent" value="17949000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -458,7 +669,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
@@ -471,29 +681,64 @@
       <window_info id="Structure" order="6" sideWeight="0.48210526" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="8" weight="0.25" />
       <window_info id="UI Designer" order="2" />
-      <window_info anchor="bottom" id="Debug" order="9" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="12" weight="0.32952926" />
-      <window_info anchor="bottom" id="Messages" order="13" weight="0.29844412" />
+      <window_info anchor="bottom" id="Debug" order="10" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="13" weight="0.32952926" />
+      <window_info active="true" anchor="bottom" id="Messages" order="14" visible="true" weight="0.29844412" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
       <window_info id="Image Layers" order="1" />
       <window_info anchor="bottom" id="Java Enterprise" order="2" weight="0.32952926" />
       <window_info anchor="right" id="Capture Analysis" order="1" />
       <window_info anchor="bottom" id="Version Control" order="4" weight="0.33951497" />
-      <window_info anchor="bottom" id="Run" order="8" weight="0.43564355" />
+      <window_info anchor="bottom" id="Run" order="9" weight="0.28854313" />
       <window_info anchor="bottom" id="Spring" order="0" weight="0.32952926" />
       <window_info anchor="bottom" id="Terminal" order="1" weight="0.32952926" />
-      <window_info content_ui="combo" id="Project" order="5" sideWeight="0.51789474" visible="true" weight="0.2989276" />
+      <window_info content_ui="combo" id="Project" order="5" sideWeight="0.51789474" visible="true" weight="0.25938338" />
       <window_info anchor="right" id="Bean Validation" order="5" weight="0.3297587" />
       <window_info id="Web" order="4" sideWeight="0.5064194" side_tool="true" weight="0.22788204" />
+      <window_info anchor="bottom" id="Find" order="6" />
       <window_info anchor="right" id="Theme Preview" order="4" />
       <window_info id="Favorites" order="3" sideWeight="0.5064194" side_tool="true" weight="0.22788204" />
-      <window_info anchor="bottom" id="Inspection" order="11" weight="0.4" />
+      <window_info anchor="bottom" id="Inspection" order="12" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="7" type="SLIDING" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="10" weight="0.25" />
+      <window_info anchor="bottom" id="Cvs" order="11" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="5" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="9" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="6" />
     </layout>
+    <layout-to-restore>
+      <window_info anchor="bottom" id="Application Servers" order="8" weight="0.32956153" />
+      <window_info id="Designer" order="0" />
+      <window_info anchor="right" id="Palette" order="6" />
+      <window_info anchor="bottom" id="Run" order="9" weight="0.28854313" />
+      <window_info anchor="bottom" id="Spring" order="0" weight="0.32952926" />
+      <window_info id="Image Layers" order="1" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="7" type="SLIDING" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="11" weight="0.25" />
+      <window_info anchor="right" id="Ant Build" order="8" weight="0.25" />
+      <window_info id="UI Designer" order="2" />
+      <window_info id="Favorites" order="3" sideWeight="0.5064194" side_tool="true" weight="0.22788204" />
+      <window_info anchor="bottom" id="Terminal" order="1" weight="0.32952926" />
+      <window_info id="Capture Tool" order="7" />
+      <window_info anchor="right" id="Capture Analysis" order="1" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Messages" order="14" weight="0.29844412" />
+      <window_info anchor="bottom" id="TODO" order="13" weight="0.32952926" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="9" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="5" sideWeight="0.51789474" visible="true" weight="0.25938338" />
+      <window_info anchor="bottom" id="Java Enterprise" order="2" weight="0.32952926" />
+      <window_info anchor="bottom" id="Database Changes" order="3" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="4" weight="0.33951497" />
+      <window_info active="true" anchor="right" id="Maven Projects" order="0" visible="true" weight="0.3297587" />
+      <window_info anchor="bottom" id="Find" order="6" />
+      <window_info anchor="bottom" id="Inspection" order="12" weight="0.4" />
+      <window_info anchor="right" id="Database" order="2" weight="0.3297587" />
+      <window_info anchor="bottom" id="Message" order="5" />
+      <window_info id="Web" order="4" sideWeight="0.5064194" side_tool="true" weight="0.22788204" />
+      <window_info anchor="right" id="Palette&#9;" order="3" />
+      <window_info anchor="right" id="Theme Preview" order="4" />
+      <window_info id="Structure" order="6" sideWeight="0.48210526" side_tool="true" weight="0.25" />
+      <window_info anchor="bottom" id="Debug" order="10" weight="0.4" />
+      <window_info anchor="right" id="Bean Validation" order="5" weight="0.3297587" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -503,72 +748,352 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="LOCAL_CHANGES_DETAILS_PREVIEW_SHOWN" value="true" />
+    <MESSAGE value="Gson转换json字符串" />
+    <option name="LAST_COMMIT_MESSAGE" value="Gson转换json字符串" />
   </component>
   <component name="antWorkspaceConfiguration">
     <option name="IS_AUTOSCROLL_TO_SOURCE" value="false" />
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/habuma/restful/MagicBean.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/spittr/webSocket/MarcoHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
+        <state relative-caret-position="228">
+          <caret line="17" column="8" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="8" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
+    <entry file="file://$PROJECT_DIR$/src/main/java/spittr/util/PropertiesUtil.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="16" column="16" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
+        <state relative-caret-position="76">
+          <caret line="6" column="27" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/spittr/config/MyFilter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="13" column="1" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/habuma/restful/MagicBean.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="7" column="8" selection-start-line="7" selection-start-column="8" selection-end-line="7" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://E:/Mvn Repo/mvn_repo_fun/settings.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-969">
-          <caret column="1" selection-start-column="1" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="465">
-          <caret line="201" column="40" lean-forward="true" selection-start-line="201" selection-start-column="40" selection-end-line="201" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://E:/Mvn Repo/mvn_repo_fun/com/fasterxml/jackson/core/jackson-annotations/2.9.0/jackson-annotations-2.9.0.jar!/com/fasterxml/jackson/annotation/JsonUnwrapped.class">
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/myapp/DataSourceConfigTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
-          <caret line="15" column="18" selection-start-line="15" selection-start-column="18" selection-end-line="15" selection-end-column="18" />
+          <caret line="15" column="9" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/spittr/webservice/SpitterServiceEndpoint.java">
+    <entry file="file://$PROJECT_DIR$/src/test/java/spittr/web/HomeControllerTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="62" lean-forward="true" selection-start-line="5" selection-start-column="62" selection-end-line="5" selection-end-column="62" />
+        <state relative-caret-position="266">
+          <caret line="21" selection-start-line="21" selection-end-line="21" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/spittr/config/RootConfig.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/spittr/util/Shout.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="156" selection-start-line="156" selection-end-line="157" />
+        <state relative-caret-position="38">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mailserver.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" column="21" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/test.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="50" selection-start-column="50" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/myapp/TestProperties.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="9" column="58" selection-start-line="9" selection-start-column="58" selection-end-line="9" selection-end-column="58" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/spittr/webSocket/MarcoHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="17" column="8" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/spittr/util/PropertiesUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="6" column="27" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="27" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/myapp/DataSourceConfigTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="15" column="9" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/spittr/web/HomeControllerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="21" selection-start-line="21" selection-end-line="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/spittr/util/Shout.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mailserver.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" column="21" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/test.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="50" selection-start-column="50" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/myapp/TestProperties.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="133">
+          <caret line="9" column="58" selection-start-line="9" selection-start-column="58" selection-end-line="9" selection-end-column="58" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/spittr/util/Shout.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/mailserver.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="38">
+          <caret line="2" column="21" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/myapp/DataSourceConfigTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="15" column="9" selection-start-line="15" selection-start-column="9" selection-end-line="15" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/spittr/web/HomeControllerTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="21" selection-start-line="21" selection-end-line="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/spittr/webSocket/MarcoHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="127">
+          <caret line="17" column="8" selection-start-line="17" selection-start-column="8" selection-end-line="17" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://E:/Mvn Repo/mvn_repo_fun/org/springframework/spring-web/4.3.15.RELEASE/spring-web-4.3.15.RELEASE.jar!/org/springframework/http/converter/json/GsonBuilderUtils.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="21" column="68" selection-start-line="21" selection-start-column="30" selection-end-line="21" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://MAVEN/spring.in.action:spring4:0.0.1-SNAPSHOT">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>MAVEN</ID>
+          <OriginalElement>spring.in.action:spring4:0.0.1-SNAPSHOT</OriginalElement>
+          <nodes>
+            <node x="" y="">spring.in.action:spring4:0.0.1-SNAPSHOT</node>
+            <node x="" y="">com.google.code.gson:gson:jar:2.8.5</node>
+            <node x="" y="">org.springframework:spring-context-support:jar:4.3.15.RELEASE</node>
+            <node x="" y="">org.springframework:spring-context-support:jar:4.3.15.RELEASE/org.springframework:spring-beans:jar:4.3.15.RELEASE</node>
+            <node x="" y="">org.springframework:spring-context-support:jar:4.3.15.RELEASE/org.springframework:spring-context:jar:4.3.15.RELEASE</node>
+            <node x="" y="">org.springframework:spring-context-support:jar:4.3.15.RELEASE/org.springframework:spring-core:jar:4.3.15.RELEASE</node>
+            <node x="" y="">org.springframework:spring-context-support:jar:4.3.15.RELEASE/org.springframework:spring-core:jar:4.3.15.RELEASE/commons-logging:commons-logging:jar:1.2</node>
+            <node x="" y="">javax.mail:mail:jar:1.4.7</node>
+            <node x="" y="">javax.mail:mail:jar:1.4.7/javax.activation:activation:jar:1.1</node>
+            <node x="" y="">com.fasterxml.jackson.core:jackson-databind:jar:2.9.5</node>
+            <node x="" y="">com.fasterxml.jackson.core:jackson-databind:jar:2.9.5/com.fasterxml.jackson.core:jackson-annotations:jar:2.9.0</node>
+            <node x="" y="">com.fasterxml.jackson.core:jackson-databind:jar:2.9.5/com.fasterxml.jackson.core:jackson-core:jar:2.9.5</node>
+            <node x="" y="">io.projectreactor:reactor-core:jar:2.0.4.RELEASE</node>
+            <node x="" y="">io.projectreactor:reactor-core:jar:2.0.4.RELEASE/org.reactivestreams:reactive-streams:jar:1.0.0</node>
+            <node x="" y="">io.projectreactor:reactor-core:jar:2.0.4.RELEASE/org.slf4j:slf4j-api:jar:1.7.12</node>
+            <node x="" y="">io.projectreactor:reactor-net:jar:2.0.4.RELEASE</node>
+            <node x="" y="">io.projectreactor:reactor-net:jar:2.0.4.RELEASE/io.projectreactor:reactor-bus:jar:2.0.4.RELEASE</node>
+            <node x="" y="">io.projectreactor:reactor-net:jar:2.0.4.RELEASE/io.projectreactor:reactor-bus:jar:2.0.4.RELEASE/com.goldmansachs:gs-collections:jar:5.1.0</node>
+            <node x="" y="">io.projectreactor:reactor-net:jar:2.0.4.RELEASE/io.projectreactor:reactor-bus:jar:2.0.4.RELEASE/com.goldmansachs:gs-collections:jar:5.1.0/com.goldmansachs:gs-collections-api:jar:5.1.0</node>
+            <node x="" y="">io.projectreactor:reactor-net:jar:2.0.4.RELEASE/io.projectreactor:reactor-stream:jar:2.0.4.RELEASE</node>
+            <node x="" y="">io.netty:netty-all:jar:4.0.30.Final</node>
+            <node x="" y="">com.caucho:hessian:jar:4.0.38</node>
+            <node x="" y="">org.springframework.data:spring-data-jpa:jar:1.11.11.RELEASE</node>
+            <node x="" y="">org.springframework.data:spring-data-jpa:jar:1.11.11.RELEASE/org.springframework.data:spring-data-commons:jar:1.13.11.RELEASE</node>
+            <node x="" y="">org.springframework.data:spring-data-jpa:jar:1.11.11.RELEASE/org.springframework.data:spring-data-commons:jar:1.13.11.RELEASE/org.slf4j:slf4j-api:jar:1.7.25</node>
+            <node x="" y="">org.springframework.data:spring-data-jpa:jar:1.11.11.RELEASE/org.springframework.data:spring-data-commons:jar:1.13.11.RELEASE/org.slf4j:jcl-over-slf4j:jar:1.7.25</node>
+            <node x="" y="">org.springframework.data:spring-data-jpa:jar:1.11.11.RELEASE/org.springframework:spring-orm:jar:4.3.15.RELEASE</node>
+            <node x="" y="">org.springframework.data:spring-data-jpa:jar:1.11.11.RELEASE/org.springframework:spring-aop:jar:4.3.15.RELEASE</node>
+            <node x="" y="">org.springframework.data:spring-data-jpa:jar:1.11.11.RELEASE/org.springframework:spring-tx:jar:4.3.15.RELEASE</node>
+            <node x="" y="">org.springframework.data:spring-data-jpa:jar:1.11.11.RELEASE/org.aspectj:aspectjrt:jar:1.8.13</node>
+            <node x="" y="">org.springframework.data:spring-data-jpa:jar:1.11.11.RELEASE/org.slf4j:slf4j-api:jar:1.5.10</node>
+            <node x="" y="">org.springframework.data:spring-data-jpa:jar:1.11.11.RELEASE/org.slf4j:jcl-over-slf4j:jar:1.5.10</node>
+            <node x="" y="">org.hibernate:hibernate-core:jar:5.2.12.Final</node>
+            <node x="" y="">org.hibernate:hibernate-core:jar:5.2.12.Final/org.jboss.logging:jboss-logging:jar:3.3.0.Final</node>
+            <node x="" y="">org.hibernate:hibernate-core:jar:5.2.12.Final/org.hibernate.javax.persistence:hibernate-jpa-2.1-api:jar:1.0.0.Final</node>
+            <node x="" y="">org.hibernate:hibernate-core:jar:5.2.12.Final/org.javassist:javassist:jar:3.20.0-GA</node>
+            <node x="" y="">org.hibernate:hibernate-core:jar:5.2.12.Final/antlr:antlr:jar:2.7.7</node>
+            <node x="" y="">org.hibernate:hibernate-core:jar:5.2.12.Final/org.jboss.spec.javax.transaction:jboss-transaction-api_1.2_spec:jar:1.0.1.Final</node>
+            <node x="" y="">org.hibernate:hibernate-core:jar:5.2.12.Final/org.jboss:jandex:jar:2.0.3.Final</node>
+            <node x="" y="">org.hibernate:hibernate-core:jar:5.2.12.Final/com.fasterxml:classmate:jar:1.3.0</node>
+            <node x="" y="">org.hibernate:hibernate-core:jar:5.2.12.Final/dom4j:dom4j:jar:1.6.1</node>
+            <node x="" y="">org.hibernate:hibernate-core:jar:5.2.12.Final/org.hibernate.common:hibernate-commons-annotations:jar:5.0.1.Final</node>
+            <node x="" y="">com.h2database:h2:jar:1.4.196</node>
+            <node x="" y="">javax.inject:javax.inject:jar:1</node>
+            <node x="" y="">commons-fileupload:commons-fileupload:jar:1.3.1</node>
+            <node x="" y="">commons-fileupload:commons-fileupload:jar:1.3.1/commons-io:commons-io:jar:2.2</node>
+            <node x="" y="">org.hibernate:hibernate-validator:jar:5.4.1.Final</node>
+            <node x="" y="">org.hibernate:hibernate-validator:jar:5.4.1.Final/javax.validation:validation-api:jar:1.1.0.Final</node>
+            <node x="" y="">org.apache.commons:commons-lang3:jar:3.1</node>
+            <node x="" y="">commons-dbcp:commons-dbcp:jar:1.4</node>
+            <node x="" y="">commons-dbcp:commons-dbcp:jar:1.4/commons-pool:commons-pool:jar:1.5.4</node>
+            <node x="" y="">org.apache.tiles:tiles-core:jar:3.0.0</node>
+            <node x="" y="">org.apache.tiles:tiles-core:jar:3.0.0/commons-digester:commons-digester:jar:2.0</node>
+            <node x="" y="">org.apache.tiles:tiles-core:jar:3.0.0/commons-digester:commons-digester:jar:2.0/commons-beanutils:commons-beanutils:jar:1.8.0</node>
+            <node x="" y="">org.apache.tiles:tiles-core:jar:3.0.0/org.slf4j:jcl-over-slf4j:jar:1.5.8</node>
+            <node x="" y="">org.apache.tiles:tiles-jsp:jar:3.0.0</node>
+            <node x="" y="">org.apache.tiles:tiles-jsp:jar:3.0.0/org.apache.tiles:tiles-request-jsp:jar:1.0.0</node>
+            <node x="" y="">org.apache.tiles:tiles-servlet:jar:3.0.0</node>
+            <node x="" y="">org.apache.tiles:tiles-servlet:jar:3.0.0/org.apache.tiles:tiles-request-servlet:jar:1.0.0</node>
+            <node x="" y="">org.apache.tiles:tiles-api:jar:3.0.0</node>
+            <node x="" y="">org.apache.tiles:tiles-api:jar:3.0.0/org.apache.tiles:tiles-request-api:jar:1.0.0</node>
+            <node x="" y="">org.apache.tiles:tiles-template:jar:3.0.0</node>
+            <node x="" y="">org.apache.tiles:tiles-template:jar:3.0.0/org.apache.tiles:tiles-autotag-core-runtime:jar:1.0.0</node>
+            <node x="" y="">org.thymeleaf:thymeleaf-spring4:jar:3.0.9.RELEASE</node>
+            <node x="" y="">org.thymeleaf:thymeleaf-spring4:jar:3.0.9.RELEASE/org.thymeleaf:thymeleaf:jar:3.0.9.RELEASE</node>
+            <node x="" y="">org.thymeleaf:thymeleaf-spring4:jar:3.0.9.RELEASE/org.thymeleaf:thymeleaf:jar:3.0.9.RELEASE/org.attoparser:attoparser:jar:2.0.4.RELEASE</node>
+            <node x="" y="">org.thymeleaf:thymeleaf-spring4:jar:3.0.9.RELEASE/org.thymeleaf:thymeleaf:jar:3.0.9.RELEASE/org.unbescape:unbescape:jar:1.1.5.RELEASE</node>
+            <node x="" y="">org.thymeleaf:thymeleaf-spring4:jar:3.0.9.RELEASE/org.thymeleaf:thymeleaf:jar:3.0.9.RELEASE/org.slf4j:slf4j-api:jar:1.5.10</node>
+            <node x="" y="">org.thymeleaf:thymeleaf-spring4:jar:3.0.9.RELEASE/org.slf4j:slf4j-api:jar:1.5.10</node>
+            <node x="" y="">javax.servlet:javax.servlet-api:jar:3.0.1</node>
+            <node x="" y="">javax.servlet.jsp:jsp-api:jar:2.1</node>
+            <node x="" y="">javax.servlet:jstl:jar:1.2</node>
+            <node x="" y="">taglibs:standard:jar:1.1.2</node>
+            <node x="" y="">org.springframework:spring-webmvc:jar:4.3.15.RELEASE</node>
+            <node x="" y="">org.springframework:spring-webmvc:jar:4.3.15.RELEASE/org.springframework:spring-expression:jar:4.3.15.RELEASE</node>
+            <node x="" y="">org.springframework:spring-webmvc:jar:4.3.15.RELEASE/org.springframework:spring-web:jar:4.3.15.RELEASE</node>
+            <node x="" y="">org.springframework:spring-jdbc:jar:4.3.15.RELEASE</node>
+            <node x="" y="">org.springframework:spring-jms:jar:4.3.15.RELEASE</node>
+            <node x="" y="">org.springframework:spring-jms:jar:4.3.15.RELEASE/org.springframework:spring-messaging:jar:4.3.15.RELEASE</node>
+            <node x="" y="">javax.jms:jms-api:jar:1.1-rev-1</node>
+            <node x="" y="">org.apache.activemq:activemq-core:jar:5.7.0</node>
+            <node x="" y="">org.apache.activemq:activemq-core:jar:5.7.0/org.slf4j:slf4j-api:jar:1.6.6</node>
+            <node x="" y="">org.apache.activemq:activemq-core:jar:5.7.0/org.apache.geronimo.specs:geronimo-jms_1.1_spec:jar:1.1.1</node>
+            <node x="" y="">org.apache.activemq:activemq-core:jar:5.7.0/org.apache.activemq:kahadb:jar:5.7.0</node>
+            <node x="" y="">org.apache.activemq:activemq-core:jar:5.7.0/org.apache.activemq:kahadb:jar:5.7.0/org.slf4j:slf4j-api:jar:1.5.10</node>
+            <node x="" y="">org.apache.activemq:activemq-core:jar:5.7.0/org.apache.activemq.protobuf:activemq-protobuf:jar:1.1</node>
+            <node x="" y="">org.apache.activemq:activemq-core:jar:5.7.0/org.fusesource.mqtt-client:mqtt-client:jar:1.3</node>
+            <node x="" y="">org.apache.activemq:activemq-core:jar:5.7.0/org.fusesource.mqtt-client:mqtt-client:jar:1.3/org.fusesource.hawtdispatch:hawtdispatch-transport:jar:1.11</node>
+            <node x="" y="">org.apache.activemq:activemq-core:jar:5.7.0/org.fusesource.mqtt-client:mqtt-client:jar:1.3/org.fusesource.hawtdispatch:hawtdispatch-transport:jar:1.11/org.fusesource.hawtdispatch:hawtdispatch:jar:1.11</node>
+            <node x="" y="">org.apache.activemq:activemq-core:jar:5.7.0/org.fusesource.mqtt-client:mqtt-client:jar:1.3/org.fusesource.hawtbuf:hawtbuf:jar:1.9</node>
+            <node x="" y="">org.apache.activemq:activemq-core:jar:5.7.0/org.apache.geronimo.specs:geronimo-j2ee-management_1.1_spec:jar:1.0.1</node>
+            <node x="" y="">org.apache.activemq:activemq-core:jar:5.7.0/org.springframework:spring-context:jar:3.0.7.RELEASE</node>
+            <node x="" y="">org.apache.activemq:activemq-core:jar:5.7.0/commons-net:commons-net:jar:3.1</node>
+            <node x="" y="">org.apache.activemq:activemq-core:jar:5.7.0/org.jasypt:jasypt:jar:1.9.0</node>
+            <node x="" y="">org.springframework:spring-websocket:jar:4.3.15.RELEASE</node>
+            <node x="" y="">org.springframework:spring-test:jar:4.3.15.RELEASE</node>
+            <node x="" y="">org.slf4j:slf4j-api:jar:1.5.10</node>
+            <node x="" y="">org.slf4j:jcl-over-slf4j:jar:1.5.10</node>
+            <node x="" y="">org.slf4j:slf4j-log4j12:jar:1.5.10</node>
+            <node x="" y="">org.slf4j:slf4j-log4j12:jar:1.5.10/log4j:log4j:jar:1.2.14</node>
+            <node x="" y="">log4j:log4j:jar:1.2.15</node>
+            <node x="" y="">org.mockito:mockito-all:jar:1.10.19</node>
+            <node x="" y="">junit:junit:jar:4.12</node>
+            <node x="" y="">junit:junit:jar:4.12/org.hamcrest:hamcrest-core:jar:1.3</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="0.7898300117233293" x="4733.507031800809" y="616.4809454896285" />
+          <SelectedNodes />
+          <Categories />
+          <VISIBILITY>All</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="17" column="47" lean-forward="true" selection-start-line="17" selection-start-column="47" selection-end-line="17" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_161/src.zip!/java/lang/reflect/Type.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="45" column="14" selection-start-line="45" selection-start-column="14" selection-end-line="45" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://E:/Mvn Repo/mvn_repo_fun/com/google/code/gson/gson/2.8.5/gson-2.8.5.jar!/com/google/gson/Gson.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="302">
+          <caret line="508" column="39" lean-forward="true" selection-start-line="508" selection-start-column="39" selection-end-line="508" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://E:/Mvn Repo/mvn_repo_fun/com/google/code/gson/gson/2.8.5/gson-2.8.5.jar!/com/google/gson/reflect/TypeToken.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1649">
+          <caret line="19" column="23" lean-forward="true" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/spittr/util/PropertiesUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="122">
+          <caret line="34" column="26" selection-start-line="34" selection-start-column="26" selection-end-line="34" selection-end-column="26" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/test.properties">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/com/myapp/TestProperties.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -593,7 +1118,7 @@
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.2" />
+                <option value="0.2671371" />
                 <option value="0.5" />
               </list>
             </option>
@@ -606,7 +1131,7 @@
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.2" />
+                <option value="0.2671371" />
               </list>
             </option>
           </splitter-proportions>
@@ -617,7 +1142,7 @@
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.2" />
+                <option value="0.2671371" />
               </list>
             </option>
           </splitter-proportions>
@@ -629,7 +1154,7 @@
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.2" />
+                <option value="0.2671371" />
               </list>
             </option>
           </splitter-proportions>
@@ -637,7 +1162,7 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>spring4</last-edited>
+          <last-edited>Web|spring4</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -653,7 +1178,7 @@
           <splitter-proportions>
             <option name="proportions">
               <list>
-                <option value="0.78024197" />
+                <option value="0.2671371" />
               </list>
             </option>
           </splitter-proportions>
