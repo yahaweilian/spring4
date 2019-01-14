@@ -58,7 +58,8 @@ import spittr.service.AlertService;
 import spittr.service.SpitterService;
 
 /**
- * @author yding DispatcherServlet配置
+ * DispatcherServlet配置，对应spring-mvc.xml
+ * @author yding 
  */
 @Configuration
 @EnableWebMvc // 启用Spring MVC

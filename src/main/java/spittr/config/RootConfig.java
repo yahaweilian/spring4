@@ -40,7 +40,7 @@ import spittr.service.AlertService;
 import spittr.service.SpitterService;
 
 /**
- * 
+ * 其他配置，会被加载到Spring应用上下文中(spitter-servlet.xml)
  * @author ynding
  *
  */

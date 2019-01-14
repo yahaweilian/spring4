@@ -227,15 +227,24 @@
 			<version>${org.springframework-version}</version>
 			<scope>test</scope>
 		</dependency>
-		<!-- Spring Security -->
-		<!-- <dependency> <groupId>org.springframework.security</groupId> <artifactId>spring-security-core</artifactId> 
-			<version>${spring-security-version}</version> </dependency> <dependency> 
-			<groupId>org.springframework.security</groupId> <artifactId>spring-security-web</artifactId> 
-			<version>${spring-security-version}</version> </dependency> <dependency> 
-			<groupId>org.springframework.security</groupId> <artifactId>spring-security-config</artifactId> 
-			<version>${spring-security-version}</version> </dependency> -->
-		<!-- Logging -->
-		<dependency>
+	<!-- Spring Security -->
+	<dependency>
+		<groupId>org.springframework.security</groupId>
+		<artifactId>spring-security-core</artifactId>
+		<version>${spring-security-version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework.security</groupId>
+		<artifactId>spring-security-web</artifactId>
+		<version>${spring-security-version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework.security</groupId>
+		<artifactId>spring-security-config</artifactId>
+		<version>${spring-security-version}</version>
+	</dependency>
+	<!-- Logging -->
+	    <dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-api</artifactId>
 			<version>${org.slf4j-version}</version>
