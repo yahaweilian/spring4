@@ -38,6 +38,8 @@ public class Spitter {
     @Email
     private String email;
     
+    private String headPicPath;//头像位置
+    
     @Transient
     @Size(min = 3, max = 50, message = "Your full name must be between 3 and 50 characters long.")
     private String fullName;
@@ -111,6 +113,14 @@ public class Spitter {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	public String getHeadPicPath() {
+		return headPicPath;
+	}
+
+	public void setHeadPicPath(String headPicPath) {
+		this.headPicPath = headPicPath;
 	}
 
 	@Override

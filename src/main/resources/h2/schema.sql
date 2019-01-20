@@ -5,11 +5,12 @@ CREATE TABLE `Spitter` (
   `firstName` varchar(64) NOT NULL COMMENT '名字',
   `lastName` varchar(64) NOT NULL COMMENT '姓氏',
   `email` varchar(64)  COMMENT '邮箱',
+  `headPicPath` varchar(64)  COMMENT '头像路径',
   PRIMARY KEY (`id`)
 );
 
 alter table Spitter add constraint username unique(username);
 
-insert into Spitter values (null, 'ynding', '111111', 'yanan', 'ding', '913690560@qq.com');
-insert into Spitter values (null, 'admin', 'password', 'admin', 'admin', '913690560@qq.com');
+insert into Spitter values (null, 'ynding', '111111', 'yanan', 'ding', '913690560@qq.com', null);
+insert into Spitter values (null, 'admin', 'password', 'admin', 'admin', '913690560@qq.com', null);
 
