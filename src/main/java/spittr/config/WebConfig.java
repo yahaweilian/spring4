@@ -11,12 +11,14 @@ import javax.swing.JScrollBar;
 
 import org.apache.activemq.ActiveMQConnectionFactory;
 import org.h2.command.dml.SelectOrderBy;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.core.annotation.Order;
+import org.springframework.core.env.Environment;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.jms.annotation.JmsListener;
@@ -58,7 +60,7 @@ import spittr.service.AlertService;
 import spittr.service.SpitterService;
 
 /**
- * DispatcherServlet配置，对应spring-mvc.xml
+ * DispatcherServlet配置，对应spring-mvc.xml,以及其他servlet配置
  * @author yding 
  */
 @Configuration
@@ -71,9 +73,9 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		// ResourceBundleMessageSource messageSource = new
 		// ResourceBundleMessageSource();
 		// messageSource.setBasename("messages");//设置在根类路径下
-
+		
 		ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-		messageSource.setBasename("classpath:///messages");// 设置在类路径下
+		messageSource.setBasename("classpath:///ENG_messages");// 设置在类路径下
 		// messageSource.setBasenames("classpath:///messages","classpath:///ValidationMessages");//验证信息文件默认ValidationMessages
 		// messageSource.setBasename("file:///etc/spittr/messages");
 		messageSource.setCacheSeconds(10);

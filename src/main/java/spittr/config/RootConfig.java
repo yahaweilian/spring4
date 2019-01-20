@@ -48,13 +48,14 @@ import spittr.service.SpitterService;
 @EnableJpaRepositories(basePackages="spittr.data")//使用spring data 创建repository的实现
 @ComponentScan(value = "spittr",excludeFilters = @ComponentScan.Filter(Controller.class))
 @PropertySource("classpath:mailserver.properties")//引入properties文件属性
+@PropertySource("classpath:env_dev.properties")//引入properties文件属性
 public class RootConfig {
 
 	@Autowired
 	Environment env;
 	
 	@Bean(destroyMethod = "shutdown")
-	@Profile("dev")
+	//@Profile("dev")
 	public DataSource dataSource(){
 		return new EmbeddedDatabaseBuilder()
 				.setType(EmbeddedDatabaseType.H2)
