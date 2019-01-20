@@ -2,6 +2,7 @@ package spittr.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -32,6 +33,7 @@ import spittr.entity.LoginUser;
 import spittr.entity.Spitter;
 import spittr.exception.ImageUploadException;
 import spittr.exception.SpitterNotFoundException;
+import spittr.util.QiniuCloudUtil;
 
 @Controller
 @RequestMapping("/spitter")
@@ -47,6 +49,11 @@ public class SpitterController {
 		this.spitterRepository = spitterRepository;
 	}
 
+	/**
+	 * 注册表单
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "register", method = RequestMethod.GET)
 	public String showRegistrationForm(Model model) {
 		model.addAttribute(new Spitter());// 对应jsp表单 属性commandName
@@ -54,13 +61,16 @@ public class SpitterController {
 		return "registerForm";
 	}
 
-	@RequestMapping(value = "login", method = RequestMethod.GET)
-	public String showLoginForm(Model model) {
-		model.addAttribute(new LoginUser());// 对应jsp表单 属性commandName
-											// 需要的key为“spitter”的模型对象
-		return "loginForm";
-	}
-
+	/**
+	 * 注册
+	 * @param profilePicture
+	 * @param spitter
+	 * @param errors
+	 * @param model
+	 * @param session
+	 * @return
+	 * @throws ImageUploadException
+	 */
 	@RequestMapping(value = "/register", method = RequestMethod.POST)
 	public String processRegistration(// 在multipart中， 每个输入域都会对应一个part
 			@RequestPart("profilePicture") MultipartFile profilePicture, // 或者byte[]
@@ -71,7 +81,7 @@ public class SpitterController {
 			return "registerForm";
 		}
 		// 保存图片到文件系统
-		try {
+		/*try {
 			String uploadDir = session.getServletContext().getRealPath("/resources/uploads");
 			File dir = new File(uploadDir);
 			if (!dir.exists() && !dir.isDirectory()) {// 创建保存文件地址
@@ -84,7 +94,9 @@ public class SpitterController {
 		} catch (IllegalStateException | IOException e) {
 			e.printStackTrace();
 			throw new ImageUploadException("Unable to save image", e);
-		}
+		}*/
+		String url = saveImgToQiniuyun(profilePicture);//保存图片到七牛云
+		System.out.println("图片URL:" + url);
 		// savaImage(profilePicture);//保存图片到Amazon s3中
 		spitterRepository.save(spitter);
 
@@ -95,15 +107,26 @@ public class SpitterController {
 		model.addFlashAttribute("spitter", spitter);// RedirectAttributes的addFlashAttribute方法,重定向model，可以传递对象
 		return "redirect:/spitter/{username}";
 	}
-
-	@RequestMapping(value = "/{username}", method = RequestMethod.GET)
-	public String showSpitterProfile(@PathVariable String username, Model model) {
-		if (!model.containsAttribute("spitter")) {
-			model.addAttribute(spitterRepository.findByUsername(username));
-		}
-		return "profile";
+	
+	/**
+	 * 登录表单
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "login", method = RequestMethod.GET)
+	public String showLoginForm(Model model) {
+		model.addAttribute(new LoginUser());// 对应jsp表单 属性commandName
+											// 需要的key为“spitter”的模型对象
+		return "loginForm";
 	}
 
+	/**
+	 * 登录
+	 * @param loginUser
+	 * @param errors
+	 * @param model
+	 * @return
+	 */
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public String processLogin(@Valid LoginUser loginUser, Errors errors, RedirectAttributes model) {
 		if (errors.hasErrors()) {// 表单验证错误,返回注册页面
@@ -120,7 +143,45 @@ public class SpitterController {
 		model.addFlashAttribute("spitter", spitter);// RedirectAttributes的addFlashAttribute方法,重定向model，可以传递对象
 		return "redirect:/spitter/{username}";
 	}
+	
+	/**
+	 * 用户信息
+	 * @param username
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/{username}", method = RequestMethod.GET)
+	public String showSpitterProfile(@PathVariable String username, Model model) {
+		if (!model.containsAttribute("spitter")) {
+			model.addAttribute(spitterRepository.findByUsername(username));
+		}
+		return "profile";
+	}
 
+	
+
+	/**
+	 * 保存图片到七牛云
+	 * @param profilePicture
+	 * @return
+	 * @throws ImageUploadException 
+	 */
+	private String saveImgToQiniuyun(MultipartFile profilePicture) throws ImageUploadException {
+		String url = null;
+		try {
+			byte[] bytes = profilePicture.getBytes();
+            String imageName = UUID.randomUUID().toString();
+            
+			QiniuCloudUtil cloudUtil = new QiniuCloudUtil();
+			url = cloudUtil.put64image(bytes, imageName);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new ImageUploadException("Unable to save image", e);
+		}
+		return url;
+	}
+	
 	/**
 	 * 上传图片到Amazon s3
 	 */

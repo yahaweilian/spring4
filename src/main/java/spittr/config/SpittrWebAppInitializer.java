@@ -1,10 +1,13 @@
 package spittr.config;
 
 
+import javax.servlet.Filter;
 import javax.servlet.MultipartConfigElement;
 import javax.servlet.ServletRegistration.Dynamic;
 
 import org.springframework.context.annotation.Profile;
+import org.springframework.web.filter.CharacterEncodingFilter;
+import org.springframework.web.filter.DelegatingFilterProxy;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 /**
@@ -45,7 +48,7 @@ public class SpittrWebAppInitializer extends AbstractAnnotationConfigDispatcherS
 		//的文件都会写入到磁盘上。
 		registration.setMultipartConfig(new MultipartConfigElement("/tmp/spittr/uploads",
 				2097152,4194304,0));
-		registration.setInitParameter("spring.profiles.default", "dev");//Servlet设置默认的profile
+		registration.setInitParameter("spring.profiles.active", "dev");//Servlet设置默认的profile
 	} 
 	
 	/*
@@ -54,8 +57,16 @@ public class SpittrWebAppInitializer extends AbstractAnnotationConfigDispatcherS
 	 * 在这里没有必要声明它的映射路径， getServletFilters()方法返回的所有Filter都会映射到DispatcherServlet上。
 	 * 当然你也可以使用自定义Servlet的方式来自定义Filter
 	 */
-	/*@Override //坑
+    @Override 
 	protected Filter[] getServletFilters(){ //使用此filter之后，请求无效，页面无反映。初步判断DispatcherServlet 拦截请求 是使用或经过filter
-		return new Filter[] {new MyFilter()};
-	}*/
+		//return new Filter[] {new MyFilter()};//坑
+    	CharacterEncodingFilter characterEncodingFilter = new CharacterEncodingFilter();
+        characterEncodingFilter.setEncoding("UTF-8");
+        characterEncodingFilter.setForceEncoding(true);
+        //加了这个有很大不同，首次打开页面，会有登陆控制，和控制台具体sql语句显示，以及错误提示。后面就和以前一样了。看样只在首次有作用
+        //首次加载'/',会自动定位到'/login'
+        //DelegatingFilterProxy securityFilterChain = new DelegatingFilterProxy("springSecurityFilterChain");
+        //return new Filter[] {characterEncodingFilter, securityFilterChain};
+        return new Filter[] {characterEncodingFilter};
+	}
 }
