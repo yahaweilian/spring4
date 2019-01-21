@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -75,28 +76,37 @@ public class SpitterController {
 	public String processRegistration(// 在multipart中， 每个输入域都会对应一个part
 			@RequestPart("profilePicture") MultipartFile profilePicture, // 或者byte[]
 																			// profilePicture
-			@Valid Spitter spitter, Errors errors, RedirectAttributes model, HttpSession session)
+			@Valid Spitter spitter, Errors errors, RedirectAttributes model, HttpSession session,HttpServletRequest request)
 			throws ImageUploadException {
 		if (errors.hasErrors()) {// 表单验证错误,返回注册页面
 			return "registerForm";
 		}
+		String returnUrl = request.getScheme() + "://" + request.getServerName() + ":" + 
+		    request.getServerPort() + request.getContextPath() +"/upload/imgs/";//存储路径
+        String path = request.getSession().getServletContext().getRealPath("upload/imgs");
+        System.out.println("returnUrl: " + returnUrl);
+        System.out.println("path: " + path);
 		// 保存图片到文件系统
-		/*try {
-			String uploadDir = session.getServletContext().getRealPath("/resources/uploads");
+		try {
+			String uploadDir = session.getServletContext().getRealPath("/upload/imgs");
+			String fileName = profilePicture.getOriginalFilename();
 			File dir = new File(uploadDir);
 			if (!dir.exists() && !dir.isDirectory()) {// 创建保存文件地址
 				dir.mkdirs();
 			}
 			if (profilePicture.getSize() != 0) { // 文件不为空
-				File file = new File(dir + File.separator + profilePicture.getOriginalFilename());
+				File file = new File(dir + File.separator + fileName);
+				System.out.println("fileRealPath：" + file.getAbsolutePath());
 				profilePicture.transferTo(file);
 			}
+			String picURL = returnUrl + fileName;//图片访问urL，访问可打开图片
+			System.out.println("picURL: " + picURL);
 		} catch (IllegalStateException | IOException e) {
 			e.printStackTrace();
 			throw new ImageUploadException("Unable to save image", e);
-		}*/
-		String url = saveImgToQiniuyun(profilePicture);//保存图片到七牛云
-		System.out.println("图片URL:" + url);
+		}
+//		String url = saveImgToQiniuyun(profilePicture);//保存图片到七牛云
+//		System.out.println("图片URL:" + url);
 		// savaImage(profilePicture);//保存图片到Amazon s3中
 		spitterRepository.save(spitter);
 
