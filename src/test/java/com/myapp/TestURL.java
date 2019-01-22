@@ -11,7 +11,7 @@ public class TestURL {
 
 	public static void main(String[] args) {
 		try {
-			URL url = new URL("http://www.runoob.com");
+			URL url = new URL("http://localhost:8904/info");
 			URLConnection urlConnection = url.openConnection();
 			HttpURLConnection connection = null;
 			if (urlConnection instanceof HttpURLConnection) {

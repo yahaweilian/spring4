@@ -86,6 +86,7 @@ public class SpitterController {
         String path = request.getSession().getServletContext().getRealPath("upload/imgs");
         System.out.println("returnUrl: " + returnUrl);
         System.out.println("path: " + path);
+        String picURL = "";//图片URL
 		// 保存图片到文件系统
 		try {
 			String uploadDir = session.getServletContext().getRealPath("/upload/imgs");
@@ -99,7 +100,7 @@ public class SpitterController {
 				System.out.println("fileRealPath：" + file.getAbsolutePath());
 				profilePicture.transferTo(file);
 			}
-			String picURL = returnUrl + fileName;//图片访问urL，访问可打开图片
+			picURL = returnUrl + fileName;//图片访问urL，访问可打开图片
 			System.out.println("picURL: " + picURL);
 		} catch (IllegalStateException | IOException e) {
 			e.printStackTrace();
@@ -108,6 +109,7 @@ public class SpitterController {
 //		String url = saveImgToQiniuyun(profilePicture);//保存图片到七牛云
 //		System.out.println("图片URL:" + url);
 		// savaImage(profilePicture);//保存图片到Amazon s3中
+		spitter.setHeadPicPath(picURL);
 		spitterRepository.save(spitter);
 
 		// return "redirect:/spitter/" + spitter.getUsername();//重定向，后面连接字符串，不安全
