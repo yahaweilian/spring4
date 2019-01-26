@@ -167,7 +167,8 @@ public class SpitterController {
 		if (!model.containsAttribute("spitter")) {
 			model.addAttribute(spitterRepository.findByUsername(username));
 		}
-		return "profile";
+		//return "profile";
+		return "jie";
 	}
 
 	

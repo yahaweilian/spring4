@@ -117,7 +117,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	public ViewResolver tilesViewResolver() {// 将逻辑视图名解析为Tile定义
 		TilesViewResolver viewResolver = new TilesViewResolver();// 这里要引用tiles3的包，而非tiles2的包，否则会报错：java.lang.ClassNotFoundException:
 																	// org.apache.tiles.TilesApplicationContext
-		viewResolver.setOrder(1);
+		viewResolver.setOrder(3);
 		viewResolver.setCache(false);// 开发时不启用缓存，改动即可生效
 		return viewResolver;
 	}
@@ -129,7 +129,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	public ViewResolver thymeleafViewResolver(SpringTemplateEngine templateEngine) {// thymeleaf视图解析器
 		ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
 		viewResolver.setTemplateEngine(templateEngine);
-		viewResolver.setOrder(3);
+		viewResolver.setOrder(1);
 		// viewResolver.setViewNames(new String[]{"*html"});
 		viewResolver.setCache(false);// 开发时不启用缓存，改动即可生效
 		return viewResolver;
@@ -151,7 +151,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		templateResolver.setSuffix(".html");
 		templateResolver.setTemplateMode("HTML5");
 		templateResolver.setCharacterEncoding("UTF-8");
-		templateResolver.setOrder(2);
+		templateResolver.setOrder(1);
 		return templateResolver;
 	}
 
@@ -161,7 +161,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		resolver.setPrefix("mail/");
 		resolver.setTemplateMode("HTML5");
 		resolver.setCharacterEncoding("UTF-8");
-		resolver.setOrder(1);//优先选择此模板解析器
+		resolver.setOrder(2);//优先选择此模板解析器
 		return resolver;
 	}
 	/*-----------------------------------------------------------------------------*/
