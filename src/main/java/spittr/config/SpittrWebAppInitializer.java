@@ -65,8 +65,8 @@ public class SpittrWebAppInitializer extends AbstractAnnotationConfigDispatcherS
         characterEncodingFilter.setForceEncoding(true);
         //加了这个有很大不同，首次打开页面，会有登陆控制，和控制台具体sql语句显示，以及错误提示。后面就和以前一样了。看样只在首次有作用
         //首次加载'/',会自动定位到'/login'
-        //DelegatingFilterProxy securityFilterChain = new DelegatingFilterProxy("springSecurityFilterChain");
-        //return new Filter[] {characterEncodingFilter, securityFilterChain};
-        return new Filter[] {characterEncodingFilter};
+        DelegatingFilterProxy securityFilterChain = new DelegatingFilterProxy("springSecurityFilterChain");
+        return new Filter[] {characterEncodingFilter, securityFilterChain};
+        //return new Filter[] {characterEncodingFilter};
 	}
 }

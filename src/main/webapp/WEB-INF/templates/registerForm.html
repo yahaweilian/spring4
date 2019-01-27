@@ -3,29 +3,46 @@
       xmlns:th="http://www.thymeleaf.org">
    <head>
       <title>Spitter</title>
-      <link rel="stylesheet" type="text/css" th:href="@{/resources/style.css}">  
+      <link rel="stylesheet" type="text/css" th:href="@{/resources/style.css}">
+      
+      <!-- Custom styles for this template -->
+      <link th:href="@{/resources/css/signin.css}" rel="stylesheet">
+      <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+      <link th:href="@{/resources/other/assets/css/ie10-viewport-bug-workaround.css}" rel="stylesheet">
+      <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+      <!--[if lt IE 9]><script src="@{/resources/other/assets/js/ie8-responsive-file-warning.js}"></script><![endif]-->
+      <script type="text/javascript" th:src="@{/resources/other/assets/js/ie-emulation-modes-warning.js}"></script>
    </head>
    <body>
-      <h1>Register</h1>
-      <form th:action="@{/spitter/register}" th:method="post" th:object="${spitter}" enctype="multipart/form-data">
-         <div class="errors" th:if="${#fields.hasErrors('*')}">
-            <ul>
-              <li th:each="err : ${#fields.hasErrors('*')}"
-                  th:text="${err}">Input is incorrect</li>
-            </ul>
-         </div>
-         
-         <label th:class="${#fields.hasErrors('firstName')}?'error'">First Name:</label> 
-             <input type="text" th:field="*{firstName}" th:class="${#fields.hasErrors('firstName')}?'error'" /><br/>
-         <label th:class="${#fields.hasErrors('lastName')}?'error'">Last Name:</label> 
-             <input type="text" th:field="*{lastName}" th:class="${#fields.hasErrors('lastName')}?'error'" /><br/>
-         <label th:class="${#fields.hasErrors('username')}?'error'">Username:</label> 
-             <input type="text" th:field="*{username}" th:class="${#fields.hasErrors('username')}?'error'" /><br/>
-         <label th:class="${#fields.hasErrors('password')}?'error'">Password:</label> 
-             <input type="password" th:field="*{password}" th:class="${#fields.hasErrors('password')}?'error'" /><br/>
-         <label>Profile Picture</label>:
-             <input type="file" name="profilePicture" accept="image/jpeg,image/png,image/gif" /><br/>
-         <input type="submit" value="Register">
-      </form>
+	<div class="container">
+		<h1>Register</h1>
+		<form th:action="@{/spitter/register}" th:method="post"
+			th:object="${spitter}" enctype="multipart/form-data">
+			<div class="errors" th:if="${#fields.hasErrors('*')}">
+				<ul>
+					<li th:each="err : ${#fields.hasErrors('*')}" th:text="${err}">Input
+						is incorrect</li>
+				</ul>
+			</div>
+
+			<label th:class="${#fields.hasErrors('firstName')}?'error'">First
+				Name:</label> <input type="text" th:field="*{firstName}"
+				th:class="${#fields.hasErrors('firstName')}?'error'" /><br /> <label
+				th:class="${#fields.hasErrors('lastName')}?'error'">Last
+				Name:</label> <input type="text" th:field="*{lastName}"
+				th:class="${#fields.hasErrors('lastName')}?'error'" /><br /> <label
+				th:class="${#fields.hasErrors('username')}?'error'">Username:</label>
+			<input type="text" th:field="*{username}"
+				th:class="${#fields.hasErrors('username')}?'error'" /><br /> <label
+				th:class="${#fields.hasErrors('password')}?'error'">Password:</label>
+			<input type="password" th:field="*{password}"
+				th:class="${#fields.hasErrors('password')}?'error'" /><br /> <label>Profile
+				Picture</label>: <input type="file" name="profilePicture"
+				accept="image/jpeg,image/png,image/gif" /><br /> <input
+				type="submit" value="Register">
+		</form>
+	</div>
+	<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script type="text/javascript" th:src="@{/resources/other/assets/js/ie10-viewport-bug-workaround.js}"></script>
    </body>
 </html>

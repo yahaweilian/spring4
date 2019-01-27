@@ -5,6 +5,8 @@ import javax.sql.DataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
 import org.springframework.security.crypto.password.StandardPasswordEncoder;
@@ -19,7 +21,8 @@ import spittr.service.impl.SpitterUserService;
  *
  */
 @Configuration
-@EnableWebMvcSecurity
+//@EnableWebMvcSecurity
+@EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
 	@Autowired
@@ -61,4 +64,24 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		//auth.userDetailsService(new SpitterUserService(spitterRepository));
 		
 	}
+	
+	/* 
+	 * 
+	 */
+	@Override 
+	protected void configure(HttpSecurity http) throws Exception {
+		//任何请求会跳到登录界面
+		http
+		.authorizeRequests()
+			.anyRequest().authenticated()
+			.and()
+		.formLogin()
+		  //.loginPage("/login")//登录页
+		.and()
+		.httpBasic();//启用HTTP Basic认证
+		//springSecurityFilterChain FIlTER会拦截请求，这个会配置请求跳转的接口，不配置的话，意思是拦截之后没做任何处理。 
+		
+		//http.csrf().disable();//禁用security的csrf
+	}
+	
 }
