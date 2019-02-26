@@ -255,6 +255,12 @@
 			<artifactId>spring-security-config</artifactId>
 			<version>${spring-security-version}</version>
 		</dependency>
+		<!-- shiro -->
+		<dependency>
+	        <groupId>org.apache.shiro</groupId>
+	        <artifactId>shiro-core</artifactId>
+	        <version>1.4.0</version>
+        </dependency>
 		<!-- Logging -->
 		<dependency>
 			<groupId>org.slf4j</groupId>

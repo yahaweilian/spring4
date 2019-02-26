@@ -15,7 +15,7 @@ import spittr.data.SpitterRepository;
 import spittr.service.impl.SpitterUserService;
 
 /**
- * web安全控制
+ * web安全控制,springSecurityFilterChain 会拦截请求，请求经过如下配置的筛选，才可通过
  * @author ynding
  * @version 2018/12/26
  *
@@ -39,18 +39,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		/*--启用内存用户存储--*/
 		auth.inMemoryAuthentication()
 		//roles()方法所给定的值都会添加一个“ROLE_”前缀， 并将其作为权限授予给用户。
-		.withUser("ynding").password("111111").authorities("ROLE_USER").and()
+		.withUser("ynding").password("222222").authorities("ROLE_USER").and()
+		.withUser("sj-wany").password("111111").authorities("ROLE_USER").and()
 		//和上面的写法是等价的
 		.withUser("admin").password("password").roles("USER","ADMIN");
 		
-		/*--基于数据库表认证 ---*/
+		/*--基于数据库表认证 ，可能不适用h2数据库---*/
 		auth.jdbcAuthentication()
 		.dataSource(dataSource)
 		.usersByUsernameQuery(
 				"select username, password, true" + 
 		        "from Spitter where username = ?")
 		.authoritiesByUsernameQuery(
-				"select username, 'ROLE_USER' from Spitter where username=?")
+				"select username, 'ROLE_USER' from Spitter where username = ?")
 		//转码器
 		//用户在登录时输入的密码会按照相同的算法进行转码， 然后再与数据库中已经转码过的密码进行对比。
 		//这个对比是在PasswordEncoder的matches()方法中进行的。
@@ -66,7 +67,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	}
 	
 	/* 
-	 * 
+	 * springSecurityFilterChain FIlTER会拦截请求，这个会配置请求跳转的接口，不配置的话，意思是拦截之后没做任何处理，
+	 * 以上的用户存储配置都会没什么作用。
 	 */
 	@Override 
 	protected void configure(HttpSecurity http) throws Exception {
@@ -79,9 +81,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		  //.loginPage("/login")//登录页
 		.and()
 		.httpBasic();//启用HTTP Basic认证
-		//springSecurityFilterChain FIlTER会拦截请求，这个会配置请求跳转的接口，不配置的话，意思是拦截之后没做任何处理。 
 		
-		//http.csrf().disable();//禁用security的csrf
+		http.csrf().disable();//禁用security的csrf
 	}
 	
 }

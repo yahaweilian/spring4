@@ -12,5 +12,6 @@ CREATE TABLE `Spitter` (
 alter table Spitter add constraint username unique(username);
 
 insert into Spitter values (null, 'ynding', '111111', 'yanan', 'ding', '913690560@qq.com', null);
+insert into Spitter values (null, 'sj-wany', '111111', 'yan', 'wang', '913690560@qq.com', null);
 insert into Spitter values (null, 'admin', 'password', 'admin', 'admin', '913690560@qq.com', null);
 
