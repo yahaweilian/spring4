@@ -3,31 +3,28 @@ package spittr.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 import spittr.data.SpitterRepository;
 import spittr.entity.Spitter;
-import spittr.service.UserDetailService;
 
-/**
- * 假设我们需要认证的用户存储在非关系型数据库中， 如Mongo或Neo4j， 在这种情况下， 我们需要提供一个自定义
- * 的UserDetailsService接口实现
- * @author ynding
- * @version 2018/12/26
- *
- */
-public class SpitterUserService implements UserDetailService {
+@Service(value = "userDetailService")
+public class UserDetailsServiceImpl implements UserDetailsService{
 
 	/**
 	 * spitterRepository
 	 */
+	@Autowired
 	private final SpitterRepository spitterRepository;
 	
-	public SpitterUserService(SpitterRepository spitterRepository) {
+	public UserDetailsServiceImpl(SpitterRepository spitterRepository) {
 		this.spitterRepository = spitterRepository;
 	}
 
