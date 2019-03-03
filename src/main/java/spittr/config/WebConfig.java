@@ -125,7 +125,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 	/*------------------------------------------------------------------------------*/
 	/*-------------------------------thymeleaf---------------------------------------*/
 	@Bean
-//	 @Order(3)
+	@Order(1)
 	public ViewResolver thymeleafViewResolver(SpringTemplateEngine templateEngine) {// thymeleaf视图解析器
 		ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
 		viewResolver.setTemplateEngine(templateEngine);

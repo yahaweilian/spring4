@@ -22,7 +22,8 @@ public class SpittrWebAppInitializer extends AbstractAnnotationConfigDispatcherS
 	 */
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return new Class<?>[]{RootConfig.class};
+		// 添加一个 ContextLoaderListener 来加载 SecurityConfig类
+		return new Class<?>[]{RootConfig.class,SecurityConfig.class};
 	}
 
 	/* 
@@ -67,6 +68,6 @@ public class SpittrWebAppInitializer extends AbstractAnnotationConfigDispatcherS
         //首次加载'/',会自动定位到'/login'
         DelegatingFilterProxy securityFilterChain = new DelegatingFilterProxy("springSecurityFilterChain");
         return new Filter[] {characterEncodingFilter, securityFilterChain};
-        //return new Filter[] {characterEncodingFilter};
+//        return new Filter[] {characterEncodingFilter};
 	}
 }

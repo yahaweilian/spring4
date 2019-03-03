@@ -125,7 +125,7 @@ public class SpitterController {
 	 * @param model
 	 * @return
 	 */
-	@RequestMapping(value = "login", method = RequestMethod.GET)
+	@RequestMapping(value = "loginForm", method = RequestMethod.GET)
 	public String showLoginForm(Model model) {
 		model.addAttribute(new LoginUser());// 对应jsp表单 属性commandName
 											// 需要的key为“spitter”的模型对象
@@ -133,7 +133,7 @@ public class SpitterController {
 	}
 
 	/**
-	 * 登录
+	 * 登录,使用spring security 之后就不用这个接口 了，因为UserDetailsServiceImpl内会做用户验证
 	 * @param loginUser
 	 * @param errors
 	 * @param model
@@ -153,9 +153,21 @@ public class SpitterController {
 		}
 		model.addAttribute("username", spitter.getUsername());
 		model.addFlashAttribute("spitter", spitter);// RedirectAttributes的addFlashAttribute方法,重定向model，可以传递对象
-		return "redirect:/spitter/{username}";
+		//return "redirect:/spitter/{username}";
+		return "jie";
 	}
 	
+	/**
+	 * spring security ,登录成功后跳转页面
+	 * @param loginUser
+	 * @param errors
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public String processLogin2() {
+		return "jie";
+	}
 	/**
 	 * 用户信息
 	 * @param username
@@ -165,7 +177,8 @@ public class SpitterController {
 	@RequestMapping(value = "/{username}", method = RequestMethod.GET)
 	public String showSpitterProfile(@PathVariable String username, Model model) {
 		if (!model.containsAttribute("spitter")) {
-			model.addAttribute(spitterRepository.findByUsername(username));
+			if(spitterRepository.findByUsername(username) != null)
+			    model.addAttribute(spitterRepository.findByUsername(username));
 		}
 		//return "profile";
 		return "jie";

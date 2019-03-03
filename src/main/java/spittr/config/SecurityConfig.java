@@ -4,6 +4,7 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.ObjectPostProcessor;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -20,7 +21,7 @@ import spittr.service.impl.UserDetailsServiceImpl;
  */
 @Configuration
 //@EnableWebMvcSecurity
-@EnableWebSecurity
+@EnableWebSecurity//当我们在任意一个类上添加了一个注解@EnableWebSecurity，就可以创建一个名为 springSecurityFilterChain 的Filter
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 
 	@Autowired
@@ -77,17 +78,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		http
 		.authorizeRequests()
 		    // 所有用户均可访问的资源  //不加下面的静态资源使用Thymeleaf 会报错
-		    .antMatchers("/resources/**","/resources/css/**", "/resources/js/**","/resources/images/**","/resources/other/**", "/webjars/**", "**/favicon.ico", "/index").permitAll() 
+		    .antMatchers("/resources/**", "/","/**/register").permitAll() 
 		    // ROLE_USER的权限才能访问的资源
-		    .antMatchers("/user/**").hasRole("USER")
+		    .antMatchers("/spitter/**").hasRole("SPITTER")
 		    // 任何尚未匹配的URL只需要验证用户即可访问
 			.anyRequest().authenticated()
 			.and()
 		.formLogin()
-		    .loginPage("/spitter/login").permitAll()//登录页
-//		    .loginProcessingUrl("/spitter/login")//登录提交的处理Url
-//		    .failureForwardUrl("/")//登陆失败进行转发，这里回到登陆页面，参数error可以告知登陆状态
-//		    .defaultSuccessUrl("/") //登陆成功的url，这里去到个人首页
+		    .loginPage("/spitter/loginForm")//登录页
+		    .loginProcessingUrl("/spitter/login")//登录提交的处理Url
+		    .defaultSuccessUrl("/spitter/login") //登陆成功的url，这里去到个人首页，get
+//		    .passwordParameter("password")//form表单用户名参数名
+//            .usernameParameter("username") //form表单密码参数名
+//            .successForwardUrl("/spitter/login")  //登录成功跳转地址,都是get，post请求不行
+//		    .failureForwardUrl("/spitter/login")//登陆失败进行转发
+            .permitAll()////允许所有用户都有权限访问登录页面
 		.and()
 //		.rememberMe()//这个功能是通过在cookie中存储一个token完成的
 //		    .tokenValiditySeconds(2419200)//四周内有效

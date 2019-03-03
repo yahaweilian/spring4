@@ -1,6 +1,7 @@
 package spittr.controller;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -35,4 +36,10 @@ public class AppWideExceptionHandler {
 		return new ErrorAuto(4,"Spittle [" +SpittleId + "] not found");
 	}
 	
+	@ExceptionHandler(UsernameNotFoundException.class)
+	@ResponseStatus(HttpStatus.NOT_FOUND)
+	public @ResponseBody ErrorAuto userNotFound(UsernameNotFoundException e){
+		e.printStackTrace();
+		return new ErrorAuto(4,"user not found");
+	}
 }
