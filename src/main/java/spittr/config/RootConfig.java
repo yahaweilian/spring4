@@ -55,7 +55,7 @@ public class RootConfig {
 	Environment env;
 	
 	@Bean(destroyMethod = "shutdown")
-	//@Profile("dev")
+	@Profile("dev")
 	public DataSource dataSource(){
 		return new EmbeddedDatabaseBuilder()
 				.setType(EmbeddedDatabaseType.H2)
