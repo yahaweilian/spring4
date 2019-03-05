@@ -9,6 +9,28 @@ import java.util.Properties;
 
 public class PropertiesUtil {
 
+	/**
+	 * 根据属性文件名获取属性
+	 * @param propertiesName
+	 * @return
+	 * @throws RuntimeException
+	 */
+	public static Properties getProperties(String propertiesName) throws RuntimeException {
+        Properties properties = new Properties();
+        InputStream in = PropertiesUtil.class.getClassLoader().getResourceAsStream(propertiesName);
+        try {
+            properties.load(in);
+        } catch (IOException e) {
+            throw new RuntimeException(e.getMessage());
+        } finally {
+            try {
+                in.close();
+            } catch (IOException ignore) {
+            }
+        }
+        return properties;
+    }
+	
     /**
      * 描述：获取properties
      * @return
