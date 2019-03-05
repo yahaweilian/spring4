@@ -261,6 +261,17 @@
 	        <artifactId>shiro-core</artifactId>
 	        <version>1.4.0</version>
         </dependency>
+        <!--spring-data-redis -->
+        <dependency>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-redis</artifactId>
+            <version>2.0.10.RELEASE</version>
+        </dependency>
+        <dependency>
+	        <groupId>org.apache.commons</groupId>
+	        <artifactId>commons-pool2</artifactId>
+	        <version>2.6.0</version>
+        </dependency>
 		<!-- Logging -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
