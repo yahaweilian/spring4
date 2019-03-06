@@ -1,9 +1,5 @@
 package spittr.config;
 
-import java.time.Duration;
-import java.util.HashMap;
-import java.util.Map;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.CachingConfigurerSupport;
@@ -11,15 +7,14 @@ import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cache.interceptor.KeyGenerator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
-import org.springframework.data.redis.cache.RedisCacheConfiguration;
 import org.springframework.data.redis.cache.RedisCacheManager;
-import org.springframework.data.redis.cache.RedisCacheWriter;
-import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.data.redis.serializer.Jackson2JsonRedisSerializer;
-import org.springframework.data.redis.serializer.RedisSerializationContext;
 
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.PropertyAccessor;
@@ -68,12 +63,39 @@ public class RedisCachingConfig extends CachingConfigurerSupport {
 		return jedisConnectionFactory;
 	}
 	
+	@Bean
+    @Primary
+    public RedisTemplate redisTemplate() {
+        JedisConnectionFactory jedisConnectionFactory = redisConnectionFactory();
+        StringRedisTemplate template = new StringRedisTemplate(jedisConnectionFactory);
+        Jackson2JsonRedisSerializer<Object> jackson2JsonRedisSerializer = new Jackson2JsonRedisSerializer<Object>(Object.class);
+        ObjectMapper om = new ObjectMapper();
+        om.setVisibility(PropertyAccessor.ALL, JsonAutoDetect.Visibility.ANY);
+        om.enableDefaultTyping(ObjectMapper.DefaultTyping.NON_FINAL);
+        jackson2JsonRedisSerializer.setObjectMapper(om);
+        template.setValueSerializer(jackson2JsonRedisSerializer);
+        template.afterPropertiesSet();
+        return template;
+    }
+	
+	@Bean
+	public CacheManager cacheManager(RedisTemplate redisTemplate) {
+		return new RedisCacheManager(redisTemplate);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	/**
-	 * 缓存管理Bean
+	 * 缓存管理Bean,适用于spring data 2.X版本 + spring5
 	 * @param redisConnectionFactory
 	 * @return
 	 */
-	@Bean
+	/*@Bean
     public CacheManager cacheManager(RedisConnectionFactory redisConnectionFactory) {
         return new RedisCacheManager(
             RedisCacheWriter.nonLockingRedisCacheWriter(redisConnectionFactory),
@@ -105,7 +127,7 @@ public class RedisCachingConfig extends CachingConfigurerSupport {
         ).entryTtl(Duration.ofSeconds(seconds));
 
         return redisCacheConfiguration;
-    }
+    }*/
 	
 	
 }
