@@ -41,9 +41,9 @@ public class SpitterServiceImpl implements SpitterService {
 
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	@Override
-	public void saveSpitter(Spitter spitter) {
+	public Spitter saveSpitter(Spitter spitter) {
 		
-		spitterRepository.save(spitter);
+		return spitterRepository.save(spitter);
 	}
 
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
