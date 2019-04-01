@@ -322,9 +322,14 @@ public class WebConfig extends WebMvcConfigurerAdapter {
 		exporter.setServiceInterface(AlertService.class);
 		return exporter;
 	}
+	/**
+	 * ActiveMQ连接工厂
+	 * @return
+	 * @throws JMSException
+	 */
 	@Bean
 	public ConnectionFactory connectionFactory() throws JMSException{//连接工厂
-		ActiveMQConnectionFactory activeMQConnectionFactory = new ActiveMQConnectionFactory("tcp://localhost:61626");
+		ActiveMQConnectionFactory activeMQConnectionFactory = new ActiveMQConnectionFactory("tcp://127.0.0.1:61616");
 		ConnectionFactory connectionFactory = new CachingConnectionFactory(activeMQConnectionFactory);
 		return connectionFactory;
 	}

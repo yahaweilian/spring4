@@ -20,7 +20,7 @@ import spittr.service.AlertService;
  * @author ynding
  *
  */
-@Service
+@Service("alertService")
 public class AlertServiceImpl implements AlertService{
 
 	private JmsOperations jmsOperation;
